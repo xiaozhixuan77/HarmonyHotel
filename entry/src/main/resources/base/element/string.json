@@ -66,7 +66,7 @@
     },
     {
       "name": "home_temp_current",
-      "value": "当前室温"
+      "value": "当前温度"
     },
     {
       "name": "tab_home",
@@ -163,6 +163,30 @@
     {
       "name": "common_network_error",
       "value": "网络连接失败"
+    },
+    {
+      "name": "home_room_prefix",
+      "value": "房号 "
+    },
+    {
+      "name": "home_ac_label",
+      "value": "空调"
+    },
+    {
+      "name": "home_scene_mode",
+      "value": "场景模式"
+    },
+    {
+      "name": "home_quick_service",
+      "value": "快捷服务"
+    },
+    {
+      "name": "home_good_night",
+      "value": "晚安模式"
+    },
+    {
+      "name": "home_good_night_desc",
+      "value": "一键关闭所有灯光"
     }
   ]
 }

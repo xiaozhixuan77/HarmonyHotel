@@ -19,7 +19,7 @@ export struct SceneModePanel {
 
   build() {
     Column() {
-      Text($r('app.string.page_light'))
+      Text($r('app.string.home_scene_mode'))
         .fontSize($r('app.float.text_body'))
         .fontColor($r('app.color.text_primary'))
         .fontWeight(FontWeight.Medium)
@@ -29,28 +29,33 @@ export struct SceneModePanel {
       Grid() {
         ForEach(this.modes, (item: SceneModeItem, index: number) => {
           GridItem() {
-            Column() {
-              Image(item.icon)
-                .width($r('app.float.icon_size_button'))
-                .height($r('app.float.icon_size_button'))
-                .fillColor(this.currentMode === item.key ?
-                  $r('app.color.gold') :
-                  $r('app.color.text_secondary'))
-              Text(item.label)
-                .fontSize($r('app.float.text_caption'))
-                .fontColor(this.currentMode === item.key ?
-                  $r('app.color.gold') :
-                  $r('app.color.text_secondary'))
-                .margin({ top: 4 })
+            Stack() {
+              Image($r('app.media.home_layer_scenemode'))
+                .width('100%')
+                .height('100%')
+                .objectFit(ImageFit.Fill)
+                .borderRadius($r('app.float.radius_card'))
+
+              Row() {
+                Image(item.icon)
+                  .width($r('app.float.icon_size_button'))
+                  .height($r('app.float.icon_size_button'))
+                  .fillColor(this.currentMode === item.key ? '#50C878' : Color.Black)
+                Text(item.label)
+                  .fontSize($r('app.float.text_caption'))
+                  .fontColor(this.currentMode === item.key ? '#50C878' : Color.Black)
+                  .margin({ left: 8 })
+              }
+              .width('100%')
+              .height('100%')
+              .justifyContent(FlexAlign.Center)
+              .alignItems(VerticalAlign.Center)
+              .backgroundColor(this.currentMode === item.key ? 'rgba(212, 177, 106, 0.35)' : Color.Transparent)
             }
             .width('100%')
             .height('100%')
-            .justifyContent(FlexAlign.Center)
-            .alignItems(HorizontalAlign.Center)
             .borderRadius($r('app.float.radius_card'))
-            .backgroundColor(this.currentMode === item.key ?
-              'rgba(212, 177, 106, 0.12)' :
-              Color.Transparent)
+            .clip(true)
             .onClick(() => {
               this.onModeSelect(item.hardwareId, item.key);
             })
@@ -58,14 +63,14 @@ export struct SceneModePanel {
         })
       }
       .columnsTemplate('1fr 1fr')
+      .rowsTemplate('1fr 1fr')
       .rowsGap($r('app.float.spacing_md'))
       .columnsGap($r('app.float.spacing_md'))
       .width('100%')
+      .height(160)
     }
     .width('100%')
     .padding($r('app.float.spacing_md'))
     .borderRadius($r('app.float.radius_card'))
-    .backgroundColor($r('app.color.surface'))
-    .backdropBlur(10)
   }
 }
