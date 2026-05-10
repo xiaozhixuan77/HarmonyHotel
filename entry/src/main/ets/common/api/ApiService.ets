@@ -114,10 +114,14 @@ async function httpRequest<T>(
 export async function get<T>(endpoint: string, params?: Record<string, string>): Promise<ApiResponse<T>> {
   let url = endpoint;
   if (params && Object.keys(params).length > 0) {
-    const query = Object.entries(params)
-      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
-      .join('&');
-    url = `${endpoint}?${query}`;
+    const keys: string[] = Object.keys(params);
+    const parts: string[] = [];
+    for (let i = 0; i < keys.length; i++) {
+      const k: string = keys[i];
+      const v: string = params[k];
+      parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(v));
+    }
+    url = endpoint + '?' + parts.join('&');
   }
   return httpRequest<T>(url, http.RequestMethod.GET);
 }

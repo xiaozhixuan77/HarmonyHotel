@@ -18,7 +18,7 @@ struct LoginPage {
 
   build() {
     Stack() {
-      Image($r('app.media.bg_hotel_full.jpg'))
+      Image($r('app.media.bg_hotel_full'))
         .width('100%')
         .height('100%')
         .objectFit(ImageFit.Cover)
@@ -27,7 +27,7 @@ struct LoginPage {
         Column() {
           Text('智慧客房')
             .fontSize($r('app.float.text_title'))
-            .fontColor($r('app.color.text_primary'))
+            .fontColor(Color.White)
             .fontWeight(FontWeight.Bold)
             .margin({ bottom: 28 })
 
@@ -36,13 +36,15 @@ struct LoginPage {
               .width(24)
               .height(24)
               .margin({ right: 12 })
+              .fillColor(Color.White)
             TextInput({
               placeholder: $r('app.string.login_room_no'),
               text: this.viewModel.roomNo
             })
               .type(InputType.Number)
-              .placeholderColor($r('app.color.text_hint'))
+              .placeholderColor('rgba(255, 255, 255, 0.45)')
               .fontSize($r('app.float.text_body'))
+              .fontColor(Color.White)
               .layoutWeight(1)
               .backgroundColor(Color.Transparent)
               .onChange((value: string) => {
@@ -53,7 +55,7 @@ struct LoginPage {
           .padding({ left: 16, right: 16 })
           .height(48)
           .borderRadius($r('app.float.radius_card'))
-          .backgroundColor($r('app.color.background'))
+          .backgroundColor('rgba(255, 255, 255, 0.12)')
           .margin({ bottom: 16 })
 
           Row() {
@@ -61,12 +63,14 @@ struct LoginPage {
               .width(24)
               .height(24)
               .margin({ right: 12 })
+              .fillColor(Color.White)
             TextInput({
               placeholder: $r('app.string.login_user_name'),
               text: this.viewModel.firstName
             })
-              .placeholderColor($r('app.color.text_hint'))
+              .placeholderColor('rgba(255, 255, 255, 0.45)')
               .fontSize($r('app.float.text_body'))
+              .fontColor(Color.White)
               .layoutWeight(1)
               .backgroundColor(Color.Transparent)
               .onChange((value: string) => {
@@ -77,7 +81,7 @@ struct LoginPage {
           .padding({ left: 16, right: 16 })
           .height(48)
           .borderRadius($r('app.float.radius_card'))
-          .backgroundColor($r('app.color.background'))
+          .backgroundColor('rgba(255, 255, 255, 0.12)')
           .margin({ bottom: 16 })
 
           Row() {
@@ -89,7 +93,7 @@ struct LoginPage {
               .margin({ right: 8 })
             Text($r('app.string.login_remember'))
               .fontSize($r('app.float.text_caption'))
-              .fontColor($r('app.color.text_secondary'))
+              .fontColor('rgba(255, 255, 255, 0.7)')
           }
           .width('100%')
           .padding({ left: 4 })
@@ -125,17 +129,17 @@ struct LoginPage {
               .width(36)
               .height(36)
               .margin({ top: 16 })
-              .color($r('app.color.primary'))
+              .color(Color.White)
           }
         }
         .width('85%')
         .padding(24)
         .borderRadius($r('app.float.radius_card'))
-        .backgroundColor($r('app.color.surface'))
-        .shadow({
-          radius: 20,
-          color: 'rgba(0, 0, 0, 0.15)',
-          offsetY: 4
+        .backgroundColor('rgba(0, 0, 0, 0.65)')
+        .backdropBlur(10)
+        .border({
+          width: 1,
+          color: 'rgba(255, 255, 255, 0.15)'
         })
       }
       .width('100%')

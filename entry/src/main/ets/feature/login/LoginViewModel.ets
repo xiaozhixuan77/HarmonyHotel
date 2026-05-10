@@ -60,7 +60,7 @@ export class LoginViewModel {
         this.errorMsg = res.msg || '登录失败';
         return false;
       }
-    } catch (err: Object) {
+    } catch (err) {
       this.errorMsg = '网络连接失败';
       return false;
     } finally {
