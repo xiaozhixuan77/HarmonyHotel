@@ -1,0 +1,44 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "margin_page",
+      "value": "16vp"
+    },
+    {
+      "name": "margin_card",
+      "value": "12vp"
+    },
+    {
+      "name": "radius_card",
+      "value": "8vp"
+    },
+    {
+      "name": "radius_button",
+      "value": "24vp"
+    },
+    {
+      "name": "text_title",
+      "value": "20fp"
+    },
+    {
+      "name": "text_body",
+      "value": "16fp"
+    },
+    {
+      "name": "text_caption",
+      "value": "14fp"
+    },
+    {
+      "name": "icon_size_tab",
+      "value": "24vp"
+    },
+    {
+      "name": "icon_size_button",
+      "value": "32vp"
+    }
+  ]
+}
