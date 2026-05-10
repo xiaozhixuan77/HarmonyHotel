@@ -67,8 +67,8 @@ export interface Hardware {
   lights: Light[];
   lightModes: LightMode[];
   services: Service[];
-  tvs: any[];
-  brightness: any[];
+  tvs: Object[];
+  brightness: Object[];
   hasBrightness: boolean;
   hasTv: boolean;
 }

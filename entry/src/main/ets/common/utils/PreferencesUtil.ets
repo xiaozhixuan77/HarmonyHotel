@@ -2,6 +2,12 @@ import { preferences } from '@kit.ArkData';
 
 const PREFERENCES_NAME = 'honysystem_prefs';
 
+export interface LoginInfo {
+  roomNo: string;
+  firstName: string;
+  remember: boolean;
+}
+
 async function getPrefs(context: Context): Promise<preferences.Preferences> {
   return preferences.getPreferences(context, PREFERENCES_NAME);
 }
@@ -14,7 +20,8 @@ export async function saveToken(context: Context, token: string): Promise<void> 
 
 export async function getToken(context: Context): Promise<string> {
   const prefs = await getPrefs(context);
-  return prefs.get('token', '') as string;
+  const value = await prefs.get('token', '');
+  return value as string;
 }
 
 export async function deleteToken(context: Context): Promise<void> {
@@ -35,16 +42,15 @@ export async function saveLoginInfo(
   await prefs.flush();
 }
 
-export async function getLoginInfo(context: Context): Promise<{
-  roomNo: string;
-  firstName: string;
-  remember: boolean;
-}> {
+export async function getLoginInfo(context: Context): Promise<LoginInfo> {
   const prefs = await getPrefs(context);
+  const roomNo = await prefs.get('login_room_no', '');
+  const firstName = await prefs.get('login_first_name', '');
+  const remember = await prefs.get('login_remember', false);
   return {
-    roomNo: prefs.get('login_room_no', '') as string,
-    firstName: prefs.get('login_first_name', '') as string,
-    remember: prefs.get('login_remember', false) as boolean
+    roomNo: roomNo as string,
+    firstName: firstName as string,
+    remember: remember as boolean
   };
 }
 

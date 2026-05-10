@@ -73,12 +73,10 @@ const MOCK_ROOM_STATE: RoomState = {
 export function mockGetRoomState(roomNo: string): Promise<ApiResponse<RoomState>> {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const state = { ...MOCK_ROOM_STATE };
-      state.room_number = roomNo;
       resolve({
         code: 0,
         msg: '获取成功',
-        data: state,
+        data: MOCK_ROOM_STATE,
         success: true
       });
     }, 300);

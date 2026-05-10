@@ -1,4 +1,4 @@
-export function debounce<T extends any[]>(
+export function debounce<T extends Object[]>(
   fn: (...args: T) => void,
   delay: number
 ): (...args: T) => void {
