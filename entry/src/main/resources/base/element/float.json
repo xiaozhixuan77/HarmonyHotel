@@ -1,20 +1,20 @@
 {
   "float": [
     {
-      "name": "page_text_font_size",
-      "value": "50fp"
-    },
-    {
-      "name": "margin_page",
-      "value": "16vp"
-    },
-    {
-      "name": "margin_card",
+      "name": "spacing_sm",
       "value": "12vp"
     },
     {
+      "name": "spacing_md",
+      "value": "16vp"
+    },
+    {
+      "name": "spacing_lg",
+      "value": "20vp"
+    },
+    {
       "name": "radius_card",
-      "value": "8vp"
+      "value": "16vp"
     },
     {
       "name": "radius_button",
@@ -39,6 +39,10 @@
     {
       "name": "icon_size_button",
       "value": "32vp"
+    },
+    {
+      "name": "tab_bar_height",
+      "value": "56vp"
     }
   ]
 }

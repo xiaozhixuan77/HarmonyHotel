@@ -13,6 +13,14 @@
       "value": "label"
     },
     {
+      "name": "login_hotel_title",
+      "value": "广科·未来酒店"
+    },
+    {
+      "name": "login_hotel_subtitle",
+      "value": "华为ICT学院专属智臻旅居体验"
+    },
+    {
       "name": "login_room_no",
       "value": "客房号"
     },
@@ -26,7 +34,7 @@
     },
     {
       "name": "login_btn",
-      "value": "登录"
+      "value": "立即入住"
     },
     {
       "name": "login_error_empty_room",
@@ -45,12 +53,48 @@
       "value": "智慧客房"
     },
     {
+      "name": "home_welcome",
+      "value": "欢迎回家"
+    },
+    {
+      "name": "home_ac_running",
+      "value": "运行中"
+    },
+    {
       "name": "home_temp_setting",
       "value": "设定温度"
     },
     {
       "name": "home_temp_current",
       "value": "当前室温"
+    },
+    {
+      "name": "tab_home",
+      "value": "首页"
+    },
+    {
+      "name": "tab_light",
+      "value": "灯光"
+    },
+    {
+      "name": "tab_curtain",
+      "value": "窗帘"
+    },
+    {
+      "name": "tab_service",
+      "value": "服务"
+    },
+    {
+      "name": "page_light",
+      "value": "灯光控制"
+    },
+    {
+      "name": "page_curtain",
+      "value": "窗帘控制"
+    },
+    {
+      "name": "page_service",
+      "value": "服务控制"
     },
     {
       "name": "light_bright",
@@ -73,6 +117,14 @@
       "value": "睡眠模式"
     },
     {
+      "name": "curtain_cloth",
+      "value": "布帘"
+    },
+    {
+      "name": "curtain_screen",
+      "value": "窗纱"
+    },
+    {
       "name": "curtain_all_open",
       "value": "全部打开"
     },
@@ -90,11 +142,15 @@
     },
     {
       "name": "service_sos",
-      "value": "紧急求救"
+      "value": "SOS 紧急呼叫"
     },
     {
       "name": "service_logout",
       "value": "退出登录"
+    },
+    {
+      "name": "common_back",
+      "value": "返回"
     },
     {
       "name": "common_confirm",

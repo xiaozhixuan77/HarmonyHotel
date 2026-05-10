@@ -21,7 +21,7 @@ export struct AirconControl {
           .margin({ left: 8 })
       }
       .width('100%')
-      .margin({ bottom: 16 })
+      .margin({ bottom: $r('app.float.spacing_md') })
 
       Row() {
         Column() {
@@ -31,7 +31,7 @@ export struct AirconControl {
           Text(this.settingTemp + '°C')
             .fontSize($r('app.float.text_title'))
             .fontWeight(FontWeight.Medium)
-            .fontColor($r('app.color.primary'))
+            .fontColor($r('app.color.gold'))
             .margin({ top: 4 })
         }
         .alignItems(HorizontalAlign.Start)
@@ -47,7 +47,7 @@ export struct AirconControl {
           })
       }
       .width('100%')
-      .margin({ bottom: 16 })
+      .margin({ bottom: $r('app.float.spacing_md') })
 
       Row() {
         Image($r('app.media.home_btn_sub'))
@@ -63,7 +63,7 @@ export struct AirconControl {
           .fontSize(28)
           .fontWeight(FontWeight.Bold)
           .fontColor($r('app.color.text_primary'))
-          .margin({ left: 20, right: 20 })
+          .margin({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg') })
 
         Image($r('app.media.home_btn_add'))
           .width($r('app.float.icon_size_button'))
@@ -82,12 +82,13 @@ export struct AirconControl {
           .width(24)
           .height(24)
           .margin({ top: 8 })
-          .color($r('app.color.primary'))
+          .color($r('app.color.gold'))
       }
     }
     .width('100%')
-    .padding(16)
+    .padding($r('app.float.spacing_md'))
     .borderRadius($r('app.float.radius_card'))
     .backgroundColor($r('app.color.surface'))
+    .backdropBlur(10)
   }
 }

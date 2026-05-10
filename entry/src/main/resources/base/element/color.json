@@ -5,40 +5,48 @@
       "value": "#FFFFFF"
     },
     {
-      "name": "primary",
-      "value": "#4A90D9"
+      "name": "gold",
+      "value": "#D4B16A"
     },
     {
-      "name": "background",
-      "value": "#F5F5F5"
+      "name": "primary",
+      "value": "#D4B16A"
+    },
+    {
+      "name": "card_bg",
+      "value": "#66000000"
+    },
+    {
+      "name": "tab_bar_bg",
+      "value": "#99000000"
     },
     {
       "name": "surface",
-      "value": "#FFFFFF"
+      "value": "#66000000"
+    },
+    {
+      "name": "background",
+      "value": "#1A1A1A"
     },
     {
       "name": "text_primary",
-      "value": "#333333"
+      "value": "#FFFFFF"
     },
     {
       "name": "text_secondary",
-      "value": "#666666"
+      "value": "#CCFFFFFF"
     },
     {
       "name": "text_hint",
-      "value": "#999999"
+      "value": "#80FFFFFF"
     },
     {
       "name": "divider",
-      "value": "#E5E5E5"
+      "value": "#33FFFFFF"
     },
     {
       "name": "error",
       "value": "#E53935"
-    },
-    {
-      "name": "success",
-      "value": "#43A047"
     }
   ]
 }

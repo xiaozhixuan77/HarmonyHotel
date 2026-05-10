@@ -16,10 +16,10 @@ struct MainPage {
         $r('app.media.tabs_icon_home_unselect'))
         .width($r('app.float.icon_size_tab'))
         .height($r('app.float.icon_size_tab'))
-      Text('首页')
-        .fontSize(11)
+      Text($r('app.string.tab_home'))
+        .fontSize($r('app.float.text_caption'))
         .fontColor(this.currentTab === 0 ?
-          $r('app.color.primary') :
+          $r('app.color.gold') :
           $r('app.color.text_hint'))
         .margin({ top: 2 })
     }
@@ -27,9 +27,6 @@ struct MainPage {
     .height('100%')
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
-    .backgroundColor(this.currentTab === 0 ?
-      'rgba(74, 144, 217, 0.08)' :
-      Color.Transparent)
   }
 
   @Builder
@@ -40,10 +37,10 @@ struct MainPage {
         $r('app.media.tabs_icon_light_unselect'))
         .width($r('app.float.icon_size_tab'))
         .height($r('app.float.icon_size_tab'))
-      Text('灯光')
-        .fontSize(11)
+      Text($r('app.string.tab_light'))
+        .fontSize($r('app.float.text_caption'))
         .fontColor(this.currentTab === 1 ?
-          $r('app.color.primary') :
+          $r('app.color.gold') :
           $r('app.color.text_hint'))
         .margin({ top: 2 })
     }
@@ -51,9 +48,6 @@ struct MainPage {
     .height('100%')
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
-    .backgroundColor(this.currentTab === 1 ?
-      'rgba(74, 144, 217, 0.08)' :
-      Color.Transparent)
   }
 
   @Builder
@@ -64,10 +58,10 @@ struct MainPage {
         $r('app.media.tabs_icon_curtain_unselect'))
         .width($r('app.float.icon_size_tab'))
         .height($r('app.float.icon_size_tab'))
-      Text('窗帘')
-        .fontSize(11)
+      Text($r('app.string.tab_curtain'))
+        .fontSize($r('app.float.text_caption'))
         .fontColor(this.currentTab === 2 ?
-          $r('app.color.primary') :
+          $r('app.color.gold') :
           $r('app.color.text_hint'))
         .margin({ top: 2 })
     }
@@ -75,9 +69,6 @@ struct MainPage {
     .height('100%')
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
-    .backgroundColor(this.currentTab === 2 ?
-      'rgba(74, 144, 217, 0.08)' :
-      Color.Transparent)
   }
 
   @Builder
@@ -88,10 +79,10 @@ struct MainPage {
         $r('app.media.tabs_icon_service_unselect'))
         .width($r('app.float.icon_size_tab'))
         .height($r('app.float.icon_size_tab'))
-      Text('服务')
-        .fontSize(11)
+      Text($r('app.string.tab_service'))
+        .fontSize($r('app.float.text_caption'))
         .fontColor(this.currentTab === 3 ?
-          $r('app.color.primary') :
+          $r('app.color.gold') :
           $r('app.color.text_hint'))
         .margin({ top: 2 })
     }
@@ -99,9 +90,6 @@ struct MainPage {
     .height('100%')
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
-    .backgroundColor(this.currentTab === 3 ?
-      'rgba(74, 144, 217, 0.08)' :
-      Color.Transparent)
   }
 
   build() {
@@ -129,8 +117,8 @@ struct MainPage {
       }
       .tabBar(this.tabService)
     }
-    .barHeight(56)
-    .barBackgroundColor($r('app.color.surface'))
+    .barHeight($r('app.float.tab_bar_height'))
+    .barBackgroundColor($r('app.color.tab_bar_bg'))
     .animationDuration(200)
     .onChange((index: number) => {
       this.currentTab = index;

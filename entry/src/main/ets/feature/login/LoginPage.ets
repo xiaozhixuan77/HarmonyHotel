@@ -25,26 +25,30 @@ struct LoginPage {
 
       Column() {
         Column() {
-          Text('智慧客房')
+          Text($r('app.string.login_hotel_title'))
             .fontSize($r('app.float.text_title'))
-            .fontColor(Color.White)
+            .fontColor($r('app.color.text_primary'))
             .fontWeight(FontWeight.Bold)
-            .margin({ bottom: 28 })
+
+          Text($r('app.string.login_hotel_subtitle'))
+            .fontSize($r('app.float.text_caption'))
+            .fontColor($r('app.color.text_secondary'))
+            .margin({ top: 6, bottom: 28 })
 
           Row() {
             Image($r('app.media.icon_input_room'))
-              .width(24)
-              .height(24)
-              .margin({ right: 12 })
-              .fillColor(Color.White)
+              .width($r('app.float.icon_size_tab'))
+              .height($r('app.float.icon_size_tab'))
+              .margin({ right: $r('app.float.spacing_sm') })
+              .fillColor($r('app.color.text_secondary'))
             TextInput({
               placeholder: $r('app.string.login_room_no'),
               text: this.viewModel.roomNo
             })
               .type(InputType.Number)
-              .placeholderColor('rgba(255, 255, 255, 0.45)')
+              .placeholderColor($r('app.color.text_hint'))
               .fontSize($r('app.float.text_body'))
-              .fontColor(Color.White)
+              .fontColor($r('app.color.text_primary'))
               .layoutWeight(1)
               .backgroundColor(Color.Transparent)
               .onChange((value: string) => {
@@ -52,25 +56,25 @@ struct LoginPage {
               })
           }
           .width('100%')
-          .padding({ left: 16, right: 16 })
-          .height(48)
+          .padding({ left: $r('app.float.spacing_md'), right: $r('app.float.spacing_md') })
+          .height($r('app.float.tab_bar_height'))
           .borderRadius($r('app.float.radius_card'))
           .backgroundColor('rgba(255, 255, 255, 0.12)')
-          .margin({ bottom: 16 })
+          .margin({ bottom: $r('app.float.spacing_sm') })
 
           Row() {
             Image($r('app.media.icon_input_user'))
-              .width(24)
-              .height(24)
-              .margin({ right: 12 })
-              .fillColor(Color.White)
+              .width($r('app.float.icon_size_tab'))
+              .height($r('app.float.icon_size_tab'))
+              .margin({ right: $r('app.float.spacing_sm') })
+              .fillColor($r('app.color.text_secondary'))
             TextInput({
               placeholder: $r('app.string.login_user_name'),
               text: this.viewModel.firstName
             })
-              .placeholderColor('rgba(255, 255, 255, 0.45)')
+              .placeholderColor($r('app.color.text_hint'))
               .fontSize($r('app.float.text_body'))
-              .fontColor(Color.White)
+              .fontColor($r('app.color.text_primary'))
               .layoutWeight(1)
               .backgroundColor(Color.Transparent)
               .onChange((value: string) => {
@@ -78,11 +82,11 @@ struct LoginPage {
               })
           }
           .width('100%')
-          .padding({ left: 16, right: 16 })
-          .height(48)
+          .padding({ left: $r('app.float.spacing_md'), right: $r('app.float.spacing_md') })
+          .height($r('app.float.tab_bar_height'))
           .borderRadius($r('app.float.radius_card'))
           .backgroundColor('rgba(255, 255, 255, 0.12)')
-          .margin({ bottom: 16 })
+          .margin({ bottom: $r('app.float.spacing_sm') })
 
           Row() {
             Image(this.viewModel.rememberMe ?
@@ -93,7 +97,7 @@ struct LoginPage {
               .margin({ right: 8 })
             Text($r('app.string.login_remember'))
               .fontSize($r('app.float.text_caption'))
-              .fontColor('rgba(255, 255, 255, 0.7)')
+              .fontColor($r('app.color.text_secondary'))
           }
           .width('100%')
           .padding({ left: 4 })
@@ -105,9 +109,9 @@ struct LoginPage {
           Button($r('app.string.login_btn'))
             .type(ButtonType.Capsule)
             .width('100%')
-            .height(48)
+            .height($r('app.float.tab_bar_height'))
             .fontSize($r('app.float.text_body'))
-            .fontColor(Color.White)
+            .fontColor($r('app.color.text_primary'))
             .backgroundColor($r('app.color.primary'))
             .enabled(!this.viewModel.isLoading)
             .opacity(this.viewModel.isLoading ? 0.7 : 1.0)
@@ -128,18 +132,18 @@ struct LoginPage {
             LoadingProgress()
               .width(36)
               .height(36)
-              .margin({ top: 16 })
-              .color(Color.White)
+              .margin({ top: $r('app.float.spacing_md') })
+              .color($r('app.color.text_primary'))
           }
         }
         .width('85%')
-        .padding(24)
+        .padding($r('app.float.spacing_lg'))
         .borderRadius($r('app.float.radius_card'))
-        .backgroundColor('rgba(0, 0, 0, 0.65)')
+        .backgroundColor($r('app.color.card_bg'))
         .backdropBlur(10)
         .border({
           width: 1,
-          color: 'rgba(255, 255, 255, 0.15)'
+          color: 'rgba(255, 255, 255, 0.12)'
         })
       }
       .width('100%')
