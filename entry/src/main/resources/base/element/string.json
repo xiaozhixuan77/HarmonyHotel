@@ -209,8 +209,12 @@
       "value": "场景模式"
     },
     {
+      "name": "light_main_switch_label",
+      "value": "总开关"
+    },
+    {
       "name": "light_independent_title",
-      "value": "独立灯光控制"
+      "value": "独立控制"
     }
   ]
 }

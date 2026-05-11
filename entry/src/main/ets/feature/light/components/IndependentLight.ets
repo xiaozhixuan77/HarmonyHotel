@@ -1,10 +1,5 @@
 import { Light } from '../../../common/model/DeviceModels';
 
-interface LightIconMap {
-  name: string;
-  icon: Resource;
-}
-
 @ComponentV2
 export struct IndependentLight {
   @Param lights: Light[] = [];
@@ -41,48 +36,49 @@ export struct IndependentLight {
           .objectFit(ImageFit.Fill)
           .borderRadius($r('app.float.radius_card'))
 
-        Column() {
+        Grid() {
           ForEach(this.lights, (light: Light, index: number) => {
-            Row() {
+            GridItem() {
               Row() {
-                Image(this.getLightIcon(light.name))
-                  .width($r('app.float.icon_size_tab'))
-                  .height($r('app.float.icon_size_tab'))
-                  .fillColor(light.on ? $r('app.color.gold') : $r('app.color.text_secondary'))
+                Row() {
+                  Image(this.getLightIcon(light.name))
+                    .width(20)
+                    .height(20)
+                    .fillColor(light.on ? $r('app.color.gold') : $r('app.color.text_secondary'))
 
-                Text(light.name)
-                  .fontSize($r('app.float.text_body'))
-                  .fontColor(light.on ? $r('app.color.text_primary') : $r('app.color.text_secondary'))
-                  .margin({ left: $r('app.float.spacing_sm') })
+                  Text(light.name)
+                    .fontSize($r('app.float.text_caption'))
+                    .fontColor(light.on ? $r('app.color.text_primary') : $r('app.color.text_secondary'))
+                    .margin({ left: 6 })
+                }
+
+                Blank()
+
+                Image(light.on ? $r('app.media.light_toggle_on') : $r('app.media.light_toggle_off'))
+                  .width(24)
+                  .height(24)
+                  .objectFit(ImageFit.Contain)
+                  .onClick(() => {
+                    this.onToggle(index);
+                  })
               }
-
-              Blank()
-
-              Image(light.on ? $r('app.media.light_toggle_on') : $r('app.media.light_toggle_off'))
-                .width(48)
-                .height(28)
-                .objectFit(ImageFit.Contain)
-                .onClick(() => {
-                  this.onToggle(index);
-                })
-            }
-            .width('100%')
-            .height(56)
-            .padding({ left: $r('app.float.spacing_md'), right: $r('app.float.spacing_md') })
-            .alignItems(VerticalAlign.Center)
-
-            if (index < this.lights.length - 1) {
-              Divider()
-                .strokeWidth(1)
-                .color($r('app.color.divider'))
-                .margin({ left: $r('app.float.spacing_md'), right: $r('app.float.spacing_md') })
+              .width('100%')
+              .height(44)
+              .padding({ left: $r('app.float.spacing_sm'), right: $r('app.float.spacing_sm') })
+              .alignItems(VerticalAlign.Center)
             }
           })
         }
+        .columnsTemplate('1fr 1fr')
+        .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
+        .rowsGap(8)
+        .columnsGap($r('app.float.spacing_md'))
         .width('100%')
-        .padding({ top: $r('app.float.spacing_sm'), bottom: $r('app.float.spacing_sm') })
+        .height(260)
+        .padding($r('app.float.spacing_md'))
       }
       .width('100%')
+      .height(260)
     }
     .width('100%')
   }

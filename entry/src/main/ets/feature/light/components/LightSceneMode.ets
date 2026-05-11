@@ -57,20 +57,20 @@ export struct LightSceneMode {
                   .objectFit(ImageFit.Fill)
                   .borderRadius($r('app.float.radius_card'))
 
-                Column() {
+                Row() {
                   Image(item.icon)
-                    .width($r('app.float.icon_size_button'))
-                    .height($r('app.float.icon_size_button'))
+                    .width(24)
+                    .height(24)
                     .fillColor(this.currentMode === item.key ? $r('app.color.gold') : Color.Black)
                   Text(item.label)
                     .fontSize($r('app.float.text_caption'))
                     .fontColor(this.currentMode === item.key ? $r('app.color.gold') : Color.Black)
-                    .margin({ top: 4 })
+                    .margin({ left: 8 })
                 }
                 .width('100%')
                 .height('100%')
                 .justifyContent(FlexAlign.Center)
-                .alignItems(HorizontalAlign.Center)
+                .alignItems(VerticalAlign.Center)
                 .backgroundColor(this.currentMode === item.key ? 'rgba(212, 177, 106, 0.35)' : Color.Transparent)
               }
               .width('100%')
@@ -83,16 +83,16 @@ export struct LightSceneMode {
             }
           })
         }
-        .columnsTemplate('1fr 1fr 1fr')
-        .rowsTemplate('1fr 1fr')
+        .columnsTemplate('1fr 1fr')
+        .rowsTemplate('1fr 1fr 1fr')
         .rowsGap($r('app.float.spacing_md'))
         .columnsGap($r('app.float.spacing_md'))
         .width('100%')
-        .height(200)
+        .height(220)
         .padding($r('app.float.spacing_md'))
       }
       .width('100%')
-      .height(200)
+      .height(220)
     }
     .width('100%')
   }
