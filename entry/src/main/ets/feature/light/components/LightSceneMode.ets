@@ -61,10 +61,10 @@ export struct LightSceneMode {
                   Image(item.icon)
                     .width(24)
                     .height(24)
-                    .fillColor(this.currentMode === item.key ? $r('app.color.gold') : Color.Black)
+                    .fillColor(this.currentMode === item.key ? $r('app.color.gold') : $r('app.color.text_primary'))
                   Text(item.label)
                     .fontSize($r('app.float.text_caption'))
-                    .fontColor(this.currentMode === item.key ? $r('app.color.gold') : Color.Black)
+                    .fontColor(this.currentMode === item.key ? $r('app.color.gold') : $r('app.color.text_primary'))
                     .margin({ left: 8 })
                 }
                 .width('100%')

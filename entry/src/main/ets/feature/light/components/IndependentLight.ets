@@ -65,6 +65,7 @@ export struct IndependentLight {
               .width('100%')
               .height(44)
               .padding({ left: $r('app.float.spacing_sm'), right: $r('app.float.spacing_sm') })
+              .justifyContent(FlexAlign.SpaceBetween)
               .alignItems(VerticalAlign.Center)
             }
           })

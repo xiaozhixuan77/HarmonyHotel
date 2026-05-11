@@ -33,7 +33,7 @@ export struct LightPage {
               this.viewModel.setAllLights(!this.viewModel.mainSwitchOn);
             }
           })
-            .margin({ bottom: $r('app.float.spacing_md') })
+            .margin({ bottom: $r('app.float.spacing_sm') })
 
           LightSceneMode({
             currentMode: this.viewModel.currentSceneMode,
@@ -42,7 +42,7 @@ export struct LightPage {
               this.viewModel.setSceneMode(hardwareId, modeName);
             }
           })
-            .margin({ bottom: $r('app.float.spacing_md') })
+            .margin({ bottom: $r('app.float.spacing_sm') })
 
           IndependentLight({
             lights: this.viewModel.lights,
@@ -52,8 +52,7 @@ export struct LightPage {
           })
         }
         .width('100%')
-        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg') })
-        .padding({ bottom: 24 })
+        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg'), bottom: 24 })
       }
       .width('100%')
       .height('100%')
