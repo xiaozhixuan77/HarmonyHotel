@@ -38,7 +38,7 @@ export struct AirconControl {
               .fontSize($r('app.float.text_caption'))
               .fontColor($r('app.color.text_secondary'))
               .margin({left:8})
-            Text(this.currentTemp + '°C')
+            Text(this.settingTemp + '°C')
               .fontSize($r('app.float.text_body'))
               .fontColor($r('app.color.text_primary'))
               .margin({ top: 4, bottom: 4 })

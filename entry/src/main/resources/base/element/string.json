@@ -187,6 +187,30 @@
     {
       "name": "home_good_night_desc",
       "value": "一键关闭所有灯光"
+    },
+    {
+      "name": "light_main_switch_on",
+      "value": "一键全开"
+    },
+    {
+      "name": "light_main_switch_off",
+      "value": "一键全关"
+    },
+    {
+      "name": "light_main_switch_status_on",
+      "value": "所有灯光已开启"
+    },
+    {
+      "name": "light_main_switch_status_off",
+      "value": "所有灯光已关闭"
+    },
+    {
+      "name": "light_scene_mode_title",
+      "value": "场景模式"
+    },
+    {
+      "name": "light_independent_title",
+      "value": "独立灯光控制"
     }
   ]
 }

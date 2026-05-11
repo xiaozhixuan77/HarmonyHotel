@@ -1,5 +1,16 @@
+import { LightViewModel } from './LightViewModel';
+import { LightMainSwitch } from './components/LightMainSwitch';
+import { LightSceneMode } from './components/LightSceneMode';
+import { IndependentLight } from './components/IndependentLight';
+
 @ComponentV2
 export struct LightPage {
+  @Local viewModel: LightViewModel = new LightViewModel();
+
+  async aboutToAppear(): Promise<void> {
+    await this.viewModel.loadLights();
+  }
+
   build() {
     Stack() {
       Image($r('app.media.light_bg'))
@@ -7,20 +18,47 @@ export struct LightPage {
         .height('100%')
         .objectFit(ImageFit.Cover)
 
-      Column() {
-        Text($r('app.string.page_light'))
-          .fontSize($r('app.float.text_title'))
-          .fontColor($r('app.color.text_primary'))
-          .fontWeight(FontWeight.Bold)
-        Text('待步骤六实现完整灯光模块')
-          .fontSize($r('app.float.text_caption'))
-          .fontColor($r('app.color.text_hint'))
-          .margin({ top: 8 })
+      Scroll() {
+        Column() {
+          Text($r('app.string.page_light'))
+            .fontSize($r('app.float.text_title'))
+            .fontColor($r('app.color.text_primary'))
+            .fontWeight(FontWeight.Bold)
+            .width('100%')
+            .margin({ top: 24, bottom: 20 })
+
+          LightMainSwitch({
+            isOn: this.viewModel.mainSwitchOn,
+            onToggle: (): void => {
+              this.viewModel.setAllLights(!this.viewModel.mainSwitchOn);
+            }
+          })
+            .margin({ bottom: $r('app.float.spacing_md') })
+
+          LightSceneMode({
+            currentMode: this.viewModel.currentSceneMode,
+            modes: this.viewModel.lightModes,
+            onModeSelect: (hardwareId: number, modeName: string): void => {
+              this.viewModel.setSceneMode(hardwareId, modeName);
+            }
+          })
+            .margin({ bottom: $r('app.float.spacing_md') })
+
+          IndependentLight({
+            lights: this.viewModel.lights,
+            onToggle: (index: number): void => {
+              this.viewModel.toggleLight(index);
+            }
+          })
+        }
+        .width('100%')
+        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg') })
+        .padding({ bottom: 24 })
       }
       .width('100%')
       .height('100%')
-      .justifyContent(FlexAlign.Center)
-      .backgroundColor($r('app.color.background'))
+      .scrollBar(BarState.Off)
+      .edgeEffect(EdgeEffect.Spring)
     }
     .width('100%')
     .height('100%')

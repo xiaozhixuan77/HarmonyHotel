@@ -3,6 +3,7 @@ import commonUtilsTest from './CommonUtils.test';
 import mockApiTest from './MockApi.test';
 import loginViewModelTest from './LoginViewModel.test';
 import homeViewModelTest from './HomeViewModel.test';
+import lightViewModelTest from './LightViewModel.test';
 
 export default function testsuite(): void {
   localUnitTest();
@@ -10,4 +11,5 @@ export default function testsuite(): void {
   mockApiTest();
   loginViewModelTest();
   homeViewModelTest();
+  lightViewModelTest();
 }
