@@ -83,7 +83,7 @@ export default function lightViewModelTest(): void {
       const vm = new LightViewModel();
       vm.getRoomStateApi = () => Promise.resolve(createMockRoomState());
       await vm.loadLights();
-      vm.lights = vm.lights.map((l: Light) => ({ ...l, on: false }));
+      vm.lights = vm.lights.map((l: Light) => ({ cpadd: l.cpadd, name: l.name, location: l.location, id: l.id, on: false }));
       let calledId = 0;
       vm.setLightModeApi = (hardwareId: number) => {
         calledId = hardwareId;
