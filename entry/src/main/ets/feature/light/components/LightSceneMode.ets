@@ -21,12 +21,14 @@ export struct LightSceneMode {
       '温馨模式': $r('app.media.light_icon_warm_mode'),
       '睡眠模式': $r('app.media.light_icon_sleep_mode')
     };
-    return this.modes.map((m: LightMode) => ({
-      label: m.name,
-      key: m.name,
-      icon: iconMap[m.name] || $r('app.media.light_icon_bright_mode'),
-      hardwareId: m.id
-    }));
+    return this.modes.map((m: LightMode): SceneItem => {
+      return {
+        label: m.name,
+        key: m.name,
+        icon: iconMap[m.name] || $r('app.media.light_icon_bright_mode'),
+        hardwareId: m.id
+      };
+    });
   }
 
   build() {
