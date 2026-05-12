@@ -26,20 +26,22 @@ struct LoginPage {
       Column() {
         Column() {
           Text($r('app.string.login_hotel_title'))
-            .fontSize($r('app.float.text_title'))
+            .fontSize('35vp')
             .fontColor($r('app.color.text_primary'))
             .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Center)
+
 
           Text($r('app.string.login_hotel_subtitle'))
-            .fontSize($r('app.float.text_caption'))
+            .fontSize('19vp')
             .fontColor($r('app.color.text_secondary'))
-            .margin({ top: 6, bottom: 28 })
+            .margin({ top: 10, bottom: 28 })
 
           Row() {
             Image($r('app.media.icon_input_room'))
               .width($r('app.float.icon_size_tab'))
               .height($r('app.float.icon_size_tab'))
-              .margin({ right: $r('app.float.spacing_sm') })
+              .margin({ right: $r('app.float.spacing_sm'),left: 5 })
               .fillColor($r('app.color.text_secondary'))
             TextInput({
               placeholder: $r('app.string.login_room_no'),

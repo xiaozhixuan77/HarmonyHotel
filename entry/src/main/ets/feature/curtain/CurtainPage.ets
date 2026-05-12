@@ -32,6 +32,7 @@ export struct CurtainPage {
             .fontSize($r('app.float.text_title'))
             .fontColor($r('app.color.text_primary'))
             .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Center)
             .width('100%')
             .margin({ top: 24, bottom: 20 })
 
