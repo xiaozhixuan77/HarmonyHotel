@@ -12,11 +12,12 @@ export struct CurtainAllControl {
         .borderRadius($r('app.float.radius_card'))
 
       Row() {
-        Column() {
+        Row() {
           Image($r('app.media.curtain_icon_open_all'))
-            .width(48)
-            .height(48)
+            .width(24)
+            .height(24)
             .objectFit(ImageFit.Contain)
+            .margin({right: 8})
 
           Text($r('app.string.curtain_all_open_label'))
             .fontSize($r('app.float.text_caption'))
@@ -26,9 +27,10 @@ export struct CurtainAllControl {
         .width('48%')
         .height('100%')
         .justifyContent(FlexAlign.Center)
-        .alignItems(HorizontalAlign.Center)
+        .alignItems(VerticalAlign.Center)
         .backgroundImage($r('app.media.curtain_btn_all_open_or_close_selected_bg'))
-        .backgroundImageSize(ImageSize.Cover)
+        .backgroundImageSize(ImageSize.Contain)
+        .backgroundImagePosition(Alignment.Center)
         .borderRadius($r('app.float.radius_button'))
         .onClick(() => {
           this.onOpenAll();
@@ -36,11 +38,12 @@ export struct CurtainAllControl {
 
         Blank()
 
-        Column() {
+        Row() {
           Image($r('app.media.curtain_icon_close_all'))
-            .width(48)
-            .height(48)
+            .width(24)
+            .height(24)
             .objectFit(ImageFit.Contain)
+            .margin({ right: 8})
 
           Text($r('app.string.curtain_all_close_label'))
             .fontSize($r('app.float.text_caption'))
@@ -50,9 +53,10 @@ export struct CurtainAllControl {
         .width('48%')
         .height('100%')
         .justifyContent(FlexAlign.Center)
-        .alignItems(HorizontalAlign.Center)
+        .alignItems(VerticalAlign.Center)
         .backgroundImage($r('app.media.curtain_btn_all_open_or_close_selected_bg'))
-        .backgroundImageSize(ImageSize.Cover)
+        .backgroundImageSize(ImageSize.Contain)
+        .backgroundImagePosition(Alignment.Center)
         .borderRadius($r('app.float.radius_button'))
         .onClick(() => {
           this.onCloseAll();
@@ -65,6 +69,6 @@ export struct CurtainAllControl {
       .alignItems(VerticalAlign.Center)
     }
     .width('100%')
-    .height(120)
+    .height(80)
   }
 }

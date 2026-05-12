@@ -44,6 +44,9 @@ export struct WindowScreening {
           .fontWeight(FontWeight.Medium)
           .width('100%')
           .margin({ top: 12, bottom: 8 })
+        Image($r('app.media.curtain_icon_top_bar'))
+          .width(170)
+          .height(5)
 
         Row() {
           Image(this.getLeftIcon(this.state))
