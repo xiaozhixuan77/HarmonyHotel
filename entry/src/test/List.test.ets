@@ -4,6 +4,7 @@ import mockApiTest from './MockApi.test';
 import loginViewModelTest from './LoginViewModel.test';
 import homeViewModelTest from './HomeViewModel.test';
 import lightViewModelTest from './LightViewModel.test';
+import curtainViewModelTest from './CurtainViewModel.test';
 
 export default function testsuite(): void {
   localUnitTest();
@@ -12,4 +13,5 @@ export default function testsuite(): void {
   loginViewModelTest();
   homeViewModelTest();
   lightViewModelTest();
+  curtainViewModelTest();
 }
