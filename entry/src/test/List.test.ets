@@ -6,6 +6,7 @@ import homeViewModelTest from './HomeViewModel.test';
 import lightViewModelTest from './LightViewModel.test';
 import curtainViewModelTest from './CurtainViewModel.test';
 import serviceViewModelTest from './ServiceViewModel.test';
+import breakpointUtilTest from './BreakpointUtil.test';
 
 export default function testsuite(): void {
   localUnitTest();
@@ -16,4 +17,5 @@ export default function testsuite(): void {
   lightViewModelTest();
   curtainViewModelTest();
   serviceViewModelTest();
+  breakpointUtilTest();
 }

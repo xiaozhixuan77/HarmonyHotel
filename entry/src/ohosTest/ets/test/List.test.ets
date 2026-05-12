@@ -4,6 +4,7 @@ import homePageTest from './HomePage.test';
 import lightPageTest from './LightPage.test';
 import curtainPageTest from './CurtainPage.test';
 import servicePageTest from './ServicePage.test';
+import productPageTest from './ProductPage.test';
 
 export default function testsuite(): void {
   abilityTest();
@@ -12,4 +13,5 @@ export default function testsuite(): void {
   lightPageTest();
   curtainPageTest();
   servicePageTest();
+  productPageTest();
 }
