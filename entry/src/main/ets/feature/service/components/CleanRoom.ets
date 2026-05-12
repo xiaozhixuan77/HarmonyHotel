@@ -1,7 +1,7 @@
 @ComponentV2
 export struct CleanRoom {
   @Param isRequested: boolean = false;
-  @Event onClick: () => void = () => {};
+  @Event onRequestClean: () => void = () => {};
 
   build() {
     Stack() {
@@ -38,7 +38,7 @@ export struct CleanRoom {
     .width('100%')
     .height(72)
     .onClick(() => {
-      this.onClick();
+      this.onRequestClean();
     })
   }
 }

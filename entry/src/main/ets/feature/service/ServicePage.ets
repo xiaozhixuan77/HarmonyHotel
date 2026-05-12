@@ -1,5 +1,5 @@
 import { common } from '@kit.AbilityKit';
-import { router, promptAction, AlertDialog } from '@kit.ArkUI';
+import { router, promptAction } from '@kit.ArkUI';
 import { ServiceViewModel } from './ServiceViewModel';
 import { DNDToggle } from './components/DNDToggle';
 import { CleanRoom } from './components/CleanRoom';
@@ -14,44 +14,39 @@ export struct ServicePage {
   }
 
   private showLogoutConfirm(): void {
-    AlertDialog.show({
-      title: $r('app.string.service_logout'),
+    promptAction.showDialog({
+      title: '退出登录',
       message: '确定要退出登录吗？',
-      primaryButton: {
-        value: $r('app.string.common_cancel'),
-        action: () => {}
-      },
-      secondaryButton: {
-        value: $r('app.string.common_confirm'),
-        action: async () => {
-          const context: common.Context = getContext(this) as common.Context;
-          await this.viewModel.logout(context);
-          router.replaceUrl({ url: 'feature/login/LoginPage' });
-        }
+      buttons: [
+        { text: '取消', color: '#666666' },
+        { text: '确认', color: '#4A90D9' }
+      ]
+    }).then(async (data) => {
+      if (data.index === 1) {
+        const context: common.Context = getContext(this) as common.Context;
+        await this.viewModel.logout(context);
+        router.replaceUrl({ url: 'feature/login/LoginPage' });
       }
-    });
+    }).catch(() => {});
   }
 
   private showSOSConfirm(): void {
-    AlertDialog.show({
+    promptAction.showDialog({
       title: '紧急求救',
       message: '确定要发送 SOS 紧急求救信号吗？',
-      primaryButton: {
-        value: $r('app.string.common_cancel'),
-        action: () => {}
-      },
-      secondaryButton: {
-        value: $r('app.string.common_confirm'),
-        fontColor: '#E53935',
-        action: () => {
-          this.viewModel.triggerSOS();
-          promptAction.showToast({
-            message: 'SOS 信号已发送',
-            duration: 2000
-          });
-        }
+      buttons: [
+        { text: '取消', color: '#666666' },
+        { text: '确认', color: '#E53935' }
+      ]
+    }).then((data) => {
+      if (data.index === 1) {
+        this.viewModel.triggerSOS();
+        promptAction.showToast({
+          message: 'SOS 信号已发送',
+          duration: 2000
+        });
       }
-    });
+    }).catch(() => {});
   }
 
   build() {
@@ -80,7 +75,7 @@ export struct ServicePage {
 
           CleanRoom({
             isRequested: this.viewModel.cleanRequested,
-            onClick: (): void => {
+            onRequestClean: (): void => {
               this.viewModel.requestClean();
               promptAction.showToast({
                 message: '已通知客房服务',
