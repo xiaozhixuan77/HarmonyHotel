@@ -63,63 +63,56 @@ export struct ServicePage {
             .fontColor($r('app.color.text_primary'))
             .fontWeight(FontWeight.Bold)
             .width('100%')
-            .margin({ top: 24, bottom: 20 })
+            .textAlign(TextAlign.Center)
+            .margin({ top: 24 })
 
-          Row() {
-            DNDToggle({
-              isOn: this.viewModel.dndOn,
-              onToggle: (): void => {
-                this.viewModel.toggleDND();
-              }
-            })
-              .layoutWeight(1)
+          Column() {
+            Row() {
+              DNDToggle({
+                isOn: this.viewModel.dndOn,
+                onToggle: (): void => {
+                  this.viewModel.toggleDND();
+                }
+              })
+                .layoutWeight(1)
 
-            CleanRoom({
-              isOn: this.viewModel.cleanRequested,
-              onToggle: (): void => {
-                this.viewModel.requestClean();
-                promptAction.showToast({
-                  message: '已通知客房服务',
-                  duration: 2000
-                });
-              }
-            })
-              .layoutWeight(1)
-              .margin({ left: $r('app.float.spacing_sm') })
-          }
-          .width('100%')
-          .margin({ bottom: $r('app.float.spacing_sm') })
-
-          SOSButton({
-            onConfirm: (): void => {
-              this.showSOSConfirm();
+              CleanRoom({
+                isOn: this.viewModel.cleanRequested,
+                onToggle: (): void => {
+                  this.viewModel.requestClean();
+                  promptAction.showToast({
+                    message: '已通知客房服务',
+                    duration: 2000
+                  });
+                }
+              })
+                .layoutWeight(1)
+                .margin({ left: $r('app.float.spacing_sm') })
             }
-          })
-            .margin({ bottom: $r('app.float.spacing_sm') })
+            .width('100%')
+            .margin({ bottom: 30 })
 
-          Row() {
-            Text($r('app.string.service_logout'))
-              .fontSize($r('app.float.text_body'))
-              .fontColor(Color.White)
-              .fontWeight(FontWeight.Medium)
-
-            Image($r('app.media.service_btn_logout'))
-              .width($r('app.float.icon_size_button'))
-              .height($r('app.float.icon_size_button'))
-              .margin({ left: $r('app.float.spacing_sm') })
-              .fillColor(Color.White)
+            SOSButton({
+              onConfirm: (): void => {
+                this.showSOSConfirm();
+              }
+            })
           }
-          .width('100%')
-          .height(56)
+          .layoutWeight(1)
           .justifyContent(FlexAlign.Center)
-          .alignItems(VerticalAlign.Center)
-          .backgroundColor('#E53935')
-          .borderRadius($r('app.float.radius_button'))
-          .onClick(() => {
-            this.showLogoutConfirm();
-          })
+          .width('100%')
+
+          Image($r('app.media.service_btn_logout'))
+            .width('100%')
+            .height(85)
+            .objectFit(ImageFit.Fill)
+            .borderRadius($r('app.float.radius_button'))
+            .onClick(() => {
+              this.showLogoutConfirm();
+            })
         }
         .width('100%')
+        .height('100%')
         .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg'), bottom: 24 })
       }
       .width('100%')

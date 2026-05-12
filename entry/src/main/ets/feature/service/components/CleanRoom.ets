@@ -7,7 +7,7 @@ export struct CleanRoom {
     Stack() {
       Image($r('app.media.service_clean_room_bg'))
         .width('100%')
-        .height('100%')
+        .height('110%')
         .objectFit(ImageFit.Fill)
         .borderRadius($r('app.float.radius_card'))
 

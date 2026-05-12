@@ -7,7 +7,7 @@ export struct DNDToggle {
     Stack() {
       Image($r('app.media.service_do_not_disturb_bg'))
         .width('100%')
-        .height('100%')
+        .height('110%')
         .objectFit(ImageFit.Fill)
         .borderRadius($r('app.float.radius_card'))
 
