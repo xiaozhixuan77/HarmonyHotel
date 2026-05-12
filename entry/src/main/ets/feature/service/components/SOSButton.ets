@@ -10,13 +10,19 @@ export struct SOSButton {
         .objectFit(ImageFit.Fill)
         .borderRadius($r('app.float.radius_card'))
 
-      Text($r('app.string.service_sos'))
-        .fontSize($r('app.float.text_body'))
-        .fontColor($r('app.color.text_primary'))
-        .fontWeight(FontWeight.Bold)
+      Row() {
+        Text('SOS')
+          .fontSize(28)
+          .fontColor(Color.Black)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Center)
     }
     .width('100%')
-    .height(72)
+    .height(80)
     .onClick(() => {
       this.onConfirm();
     })

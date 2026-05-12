@@ -30,7 +30,7 @@ export default function servicePageTest(): void {
       expect(dnd !== null).assertTrue();
       const clean: Component = await driver.findComponent(ON.text('清理房间'));
       expect(clean !== null).assertTrue();
-      const sos: Component = await driver.findComponent(ON.text('SOS 紧急呼叫'));
+      const sos: Component = await driver.findComponent(ON.text('SOS'));
       expect(sos !== null).assertTrue();
       const logout: Component = await driver.findComponent(ON.text('退出登录'));
       expect(logout !== null).assertTrue();

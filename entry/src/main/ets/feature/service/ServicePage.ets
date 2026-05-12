@@ -65,25 +65,30 @@ export struct ServicePage {
             .width('100%')
             .margin({ top: 24, bottom: 20 })
 
-          DNDToggle({
-            isOn: this.viewModel.dndOn,
-            onToggle: (): void => {
-              this.viewModel.toggleDND();
-            }
-          })
-            .margin({ bottom: $r('app.float.spacing_sm') })
+          Row() {
+            DNDToggle({
+              isOn: this.viewModel.dndOn,
+              onToggle: (): void => {
+                this.viewModel.toggleDND();
+              }
+            })
+              .layoutWeight(1)
 
-          CleanRoom({
-            isRequested: this.viewModel.cleanRequested,
-            onRequestClean: (): void => {
-              this.viewModel.requestClean();
-              promptAction.showToast({
-                message: '已通知客房服务',
-                duration: 2000
-              });
-            }
-          })
-            .margin({ bottom: $r('app.float.spacing_sm') })
+            CleanRoom({
+              isOn: this.viewModel.cleanRequested,
+              onToggle: (): void => {
+                this.viewModel.requestClean();
+                promptAction.showToast({
+                  message: '已通知客房服务',
+                  duration: 2000
+                });
+              }
+            })
+              .layoutWeight(1)
+              .margin({ left: $r('app.float.spacing_sm') })
+          }
+          .width('100%')
+          .margin({ bottom: $r('app.float.spacing_sm') })
 
           SOSButton({
             onConfirm: (): void => {
@@ -93,21 +98,23 @@ export struct ServicePage {
             .margin({ bottom: $r('app.float.spacing_sm') })
 
           Row() {
+            Text($r('app.string.service_logout'))
+              .fontSize($r('app.float.text_body'))
+              .fontColor(Color.White)
+              .fontWeight(FontWeight.Medium)
+
             Image($r('app.media.service_btn_logout'))
               .width($r('app.float.icon_size_button'))
               .height($r('app.float.icon_size_button'))
-              .margin({ right: $r('app.float.spacing_sm') })
-
-            Text($r('app.string.service_logout'))
-              .fontSize($r('app.float.text_body'))
-              .fontColor($r('app.color.text_primary'))
+              .margin({ left: $r('app.float.spacing_sm') })
+              .fillColor(Color.White)
           }
           .width('100%')
           .height(56)
           .justifyContent(FlexAlign.Center)
           .alignItems(VerticalAlign.Center)
-          .backgroundColor('rgba(255, 255, 255, 0.08)')
-          .borderRadius($r('app.float.radius_card'))
+          .backgroundColor('#E53935')
+          .borderRadius($r('app.float.radius_button'))
           .onClick(() => {
             this.showLogoutConfirm();
           })
