@@ -10,9 +10,6 @@ export default function homePageTest(): void {
     });
 
     afterAll(async () => {
-      if (driver) {
-        driver.release();
-      }
     });
 
     beforeEach(async (done: Function) => {
@@ -21,30 +18,33 @@ export default function homePageTest(): void {
     });
 
     it('温度加_点击加号_设定温度增加', 0, async (done: Function) => {
-      const addBtn: Component = await driver.findComponent(ON.type('Image').index(2));
+      const images: Component[] = await driver.findComponents(ON.type('Image'));
+      const addBtn: Component = images[2];
       await addBtn.click();
       await sleep(600);
       // 验证温度显示变化
       const tempText: Component = await driver.findComponent(ON.text('23°C'));
-      expect(tempText).assertNotNull();
+      expect(tempText !== null).assertTrue();
       done();
     });
 
     it('温度减_点击减号_设定温度减少', 0, async (done: Function) => {
-      const subBtn: Component = await driver.findComponent(ON.type('Image').index(1));
+      const images: Component[] = await driver.findComponents(ON.type('Image'));
+      const subBtn: Component = images[1];
       await subBtn.click();
       await sleep(600);
       const tempText: Component = await driver.findComponent(ON.text('21°C'));
-      expect(tempText).assertNotNull();
+      expect(tempText !== null).assertTrue();
       done();
     });
 
     it('AC开关_点击关闭_AC状态变为关', 0, async (done: Function) => {
-      const acIcon: Component = await driver.findComponent(ON.type('Image').index(0));
+      const images: Component[] = await driver.findComponents(ON.type('Image'));
+      const acIcon: Component = images[0];
       await acIcon.click();
       await sleep(600);
       // 验证 AC icon 变为 close 状态
-      expect(acIcon).assertNotNull();
+      expect(acIcon !== null).assertTrue();
       done();
     });
 
@@ -52,7 +52,7 @@ export default function homePageTest(): void {
       const softBtn: Component = await driver.findComponent(ON.text('柔和'));
       await softBtn.click();
       await sleep(600);
-      expect(softBtn).assertNotNull();
+      expect(softBtn !== null).assertTrue();
       done();
     });
 
@@ -60,7 +60,7 @@ export default function homePageTest(): void {
       const nightBtn: Component = await driver.findComponent(ON.text('晚安模式'));
       await nightBtn.click();
       await sleep(600);
-      expect(nightBtn).assertNotNull();
+      expect(nightBtn !== null).assertTrue();
       done();
     });
   });

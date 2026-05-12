@@ -1,7 +1,11 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { CurtainViewModel } from '../main/ets/feature/curtain/CurtainViewModel';
 import { ApiResponse } from '../main/ets/common/model/ApiResponse';
-import { RoomState, Curtain } from '../main/ets/common/model/DeviceModels';
+import { RoomState, Curtain, CurtainState } from '../main/ets/common/model/DeviceModels';
+
+function makeCurtain(sequence: number, cpadd: string, name: string, location: string, id: number, state?: CurtainState): Curtain {
+  return { sequence, cpadd, name, location, id, state };
+}
 
 function createMockRoomState(): ApiResponse<RoomState> {
   return {
@@ -25,8 +29,8 @@ function createMockRoomState(): ApiResponse<RoomState> {
         lights: [],
         lightModes: [],
         curtains: [
-          { sequence: 0, cpadd: '1', name: '窗帘1', location: '房间', id: 103137 },
-          { sequence: 1, cpadd: '2', name: '窗纱', location: '房间', id: 103127 }
+          makeCurtain(0, '1', '窗帘1', '房间', 103137),
+          makeCurtain(1, '2', '窗纱', '房间', 103127)
         ],
         services: [],
         tvs: [],
@@ -54,8 +58,8 @@ export default function curtainViewModelTest(): void {
     it('全开_所有窗帘状态变为open', 0, () => {
       const vm = new CurtainViewModel();
       vm.curtains = [
-        { sequence: 0, cpadd: '1', name: '窗帘1', location: '房间', id: 103137, state: 'close' },
-        { sequence: 1, cpadd: '2', name: '窗纱', location: '房间', id: 103127, state: 'close' }
+        makeCurtain(0, '1', '窗帘1', '房间', 103137, 'close'),
+        makeCurtain(1, '2', '窗纱', '房间', 103127, 'close')
       ];
       vm.setAll('open');
       expect(vm.curtains[0].state).assertEqual('open');
@@ -65,8 +69,8 @@ export default function curtainViewModelTest(): void {
     it('全关_所有窗帘状态变为close', 0, () => {
       const vm = new CurtainViewModel();
       vm.curtains = [
-        { sequence: 0, cpadd: '1', name: '窗帘1', location: '房间', id: 103137, state: 'open' },
-        { sequence: 1, cpadd: '2', name: '窗纱', location: '房间', id: 103127, state: 'half' }
+        makeCurtain(0, '1', '窗帘1', '房间', 103137, 'open'),
+        makeCurtain(1, '2', '窗纱', '房间', 103127, 'half')
       ];
       vm.setAll('close');
       expect(vm.curtains[0].state).assertEqual('close');
@@ -76,8 +80,8 @@ export default function curtainViewModelTest(): void {
     it('窗帘1_打开_状态变为open', 0, () => {
       const vm = new CurtainViewModel();
       vm.curtains = [
-        { sequence: 0, cpadd: '1', name: '窗帘1', location: '房间', id: 103137, state: 'close' },
-        { sequence: 1, cpadd: '2', name: '窗纱', location: '房间', id: 103127, state: 'close' }
+        makeCurtain(0, '1', '窗帘1', '房间', 103137, 'close'),
+        makeCurtain(1, '2', '窗纱', '房间', 103127, 'close')
       ];
       vm.setCurtainState(0, 'open');
       expect(vm.curtains[0].state).assertEqual('open');
@@ -86,8 +90,8 @@ export default function curtainViewModelTest(): void {
     it('窗帘1_暂停_状态变为pause', 0, () => {
       const vm = new CurtainViewModel();
       vm.curtains = [
-        { sequence: 0, cpadd: '1', name: '窗帘1', location: '房间', id: 103137, state: 'open' },
-        { sequence: 1, cpadd: '2', name: '窗纱', location: '房间', id: 103127, state: 'close' }
+        makeCurtain(0, '1', '窗帘1', '房间', 103137, 'open'),
+        makeCurtain(1, '2', '窗纱', '房间', 103127, 'close')
       ];
       vm.setCurtainState(0, 'pause');
       expect(vm.curtains[0].state).assertEqual('pause');
@@ -96,8 +100,8 @@ export default function curtainViewModelTest(): void {
     it('窗帘1_关闭_状态变为close', 0, () => {
       const vm = new CurtainViewModel();
       vm.curtains = [
-        { sequence: 0, cpadd: '1', name: '窗帘1', location: '房间', id: 103137, state: 'open' },
-        { sequence: 1, cpadd: '2', name: '窗纱', location: '房间', id: 103127, state: 'open' }
+        makeCurtain(0, '1', '窗帘1', '房间', 103137, 'open'),
+        makeCurtain(1, '2', '窗纱', '房间', 103127, 'open')
       ];
       vm.setCurtainState(0, 'close');
       expect(vm.curtains[0].state).assertEqual('close');
@@ -106,8 +110,8 @@ export default function curtainViewModelTest(): void {
     it('窗帘1_半开_状态变为half', 0, () => {
       const vm = new CurtainViewModel();
       vm.curtains = [
-        { sequence: 0, cpadd: '1', name: '窗帘1', location: '房间', id: 103137, state: 'close' },
-        { sequence: 1, cpadd: '2', name: '窗纱', location: '房间', id: 103127, state: 'close' }
+        makeCurtain(0, '1', '窗帘1', '房间', 103137, 'close'),
+        makeCurtain(1, '2', '窗纱', '房间', 103127, 'close')
       ];
       vm.setCurtainState(0, 'half');
       expect(vm.curtains[0].state).assertEqual('half');
@@ -116,8 +120,8 @@ export default function curtainViewModelTest(): void {
     it('窗纱_半开_状态变为half', 0, () => {
       const vm = new CurtainViewModel();
       vm.curtains = [
-        { sequence: 0, cpadd: '1', name: '窗帘1', location: '房间', id: 103137, state: 'close' },
-        { sequence: 1, cpadd: '2', name: '窗纱', location: '房间', id: 103127, state: 'close' }
+        makeCurtain(0, '1', '窗帘1', '房间', 103137, 'close'),
+        makeCurtain(1, '2', '窗纱', '房间', 103127, 'close')
       ];
       vm.setCurtainState(1, 'half');
       expect(vm.curtains[1].state).assertEqual('half');
@@ -126,8 +130,8 @@ export default function curtainViewModelTest(): void {
     it('窗帘状态互斥_左右状态独立', 0, () => {
       const vm = new CurtainViewModel();
       vm.curtains = [
-        { sequence: 0, cpadd: '1', name: '窗帘1', location: '房间', id: 103137, state: 'close' },
-        { sequence: 1, cpadd: '2', name: '窗纱', location: '房间', id: 103127, state: 'close' }
+        makeCurtain(0, '1', '窗帘1', '房间', 103137, 'close'),
+        makeCurtain(1, '2', '窗纱', '房间', 103127, 'close')
       ];
       vm.setCurtainState(0, 'open');
       vm.setCurtainState(1, 'close');

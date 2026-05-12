@@ -1,9 +1,10 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { HomeViewModel } from '../main/ets/feature/home/HomeViewModel';
 import { ApiResponse } from '../main/ets/common/model/ApiResponse';
-import { RoomState } from '../main/ets/common/model/DeviceModels';
+import { RoomState, AirConditioner } from '../main/ets/common/model/DeviceModels';
 
 function createMockRoomState(): ApiResponse<RoomState> {
+  const mockAc: AirConditioner = { code: '', cpadd: '', name: 'kt1', location: '', id: 103136, settingTemp: 22, currentTemp: 19, mode: 0, speed: 1, open: 1 };
   return {
     code: 0,
     msg: '获取成功',
@@ -21,7 +22,7 @@ function createMockRoomState(): ApiResponse<RoomState> {
         shaohou: '', tui: '', menci: '', ruzhu: ''
       },
       hardware: {
-        airs: [{ code: '', cpadd: '', name: 'kt1', location: '', id: 103136, settingTemp: 22, currentTemp: 19, mode: 0, speed: 1, open: 1 }],
+        airs: [mockAc],
         curtains: [],
         lights: [],
         lightModes: [],
@@ -50,7 +51,7 @@ export default function homeViewModelTest(): void {
 
     it('温度加1_范围内_设置温度增加', 0, () => {
       const vm = new HomeViewModel();
-      vm.clickAirBtnApi = () => Promise.resolve({ code: 0, msg: '成功', data: 'success', success: true });
+      vm.clickAirBtnApi = (): Promise<ApiResponse<string>> => Promise.resolve<ApiResponse<string>>({ code: 0, msg: '成功', data: 'success', success: true });
       vm.settingTemp = 22;
       vm.tempUp();
       expect(vm.settingTemp).assertEqual(23);
@@ -58,7 +59,7 @@ export default function homeViewModelTest(): void {
 
     it('温度减1_范围内_设置温度减少', 0, () => {
       const vm = new HomeViewModel();
-      vm.clickAirBtnApi = () => Promise.resolve({ code: 0, msg: '成功', data: 'success', success: true });
+      vm.clickAirBtnApi = (): Promise<ApiResponse<string>> => Promise.resolve<ApiResponse<string>>({ code: 0, msg: '成功', data: 'success', success: true });
       vm.settingTemp = 22;
       vm.tempDown();
       expect(vm.settingTemp).assertEqual(21);
@@ -81,9 +82,9 @@ export default function homeViewModelTest(): void {
     it('温度防抖_连续调用_不立即发送API', 0, async (done: Function) => {
       const vm = new HomeViewModel();
       let callCount = 0;
-      vm.clickAirBtnApi = () => {
+      vm.clickAirBtnApi = (): Promise<ApiResponse<string>> => {
         callCount++;
-        return Promise.resolve({ code: 0, msg: '成功', data: 'success', success: true });
+        return Promise.resolve<ApiResponse<string>>({ code: 0, msg: '成功', data: 'success', success: true });
       };
       vm.settingTemp = 22;
       vm.tempUp();
@@ -102,9 +103,9 @@ export default function homeViewModelTest(): void {
     it('场景模式切换_明亮模式_调用API并更新状态', 0, async (done: Function) => {
       const vm = new HomeViewModel();
       let calledId = 0;
-      vm.setLightModeApi = (hardwareId: number) => {
+      vm.setLightModeApi = (hardwareId: number): Promise<ApiResponse<string>> => {
         calledId = hardwareId;
-        return Promise.resolve({ code: 0, msg: '成功', data: 'success', success: true });
+        return Promise.resolve<ApiResponse<string>>({ code: 0, msg: '成功', data: 'success', success: true });
       };
       await vm.setSceneMode(103119, '明亮');
       expect(calledId).assertEqual(103119);
@@ -115,9 +116,9 @@ export default function homeViewModelTest(): void {
     it('晚安模式_调用setLightMode_103004', 0, async (done: Function) => {
       const vm = new HomeViewModel();
       let calledId = 0;
-      vm.setLightModeApi = (hardwareId: number) => {
+      vm.setLightModeApi = (hardwareId: number): Promise<ApiResponse<string>> => {
         calledId = hardwareId;
-        return Promise.resolve({ code: 0, msg: '成功', data: 'success', success: true });
+        return Promise.resolve<ApiResponse<string>>({ code: 0, msg: '成功', data: 'success', success: true });
       };
       await vm.goodNightMode();
       expect(calledId).assertEqual(103004);
@@ -129,10 +130,10 @@ export default function homeViewModelTest(): void {
       const vm = new HomeViewModel();
       let cmdCalled = '';
       let valCalled = 0;
-      vm.clickAirBtnApi = (cmd: string, value: number) => {
+      vm.clickAirBtnApi = (cmd: string, value: number): Promise<ApiResponse<string>> => {
         cmdCalled = cmd;
         valCalled = value;
-        return Promise.resolve({ code: 0, msg: '成功', data: 'success', success: true });
+        return Promise.resolve<ApiResponse<string>>({ code: 0, msg: '成功', data: 'success', success: true });
       };
       vm.acPower = true;
       await vm.togglePower();

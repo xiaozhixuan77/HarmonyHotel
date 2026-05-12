@@ -7,12 +7,15 @@ export default function lightPageTest(): void {
 
     beforeAll(async () => {
       driver = Driver.create();
+      // 切换到灯光 tab
+      const lightTab: Component = await driver.findComponent(ON.text('灯光'));
+      if (lightTab !== null) {
+        await lightTab.click();
+        await sleep(600);
+      }
     });
 
     afterAll(async () => {
-      if (driver) {
-        driver.release();
-      }
     });
 
     beforeEach(async (done: Function) => {
@@ -22,22 +25,22 @@ export default function lightPageTest(): void {
 
     it('页面渲染_灯光页关键元素存在', 0, async (done: Function) => {
       const title: Component = await driver.findComponent(ON.text('灯光控制'));
-      expect(title).assertNotNull();
+      expect(title !== null).assertTrue();
       const mainSwitch: Component = await driver.findComponent(ON.text('一键全开'));
-      expect(mainSwitch).assertNotNull();
+      expect(mainSwitch !== null).assertTrue();
       const sceneMode: Component = await driver.findComponent(ON.text('场景模式'));
-      expect(sceneMode).assertNotNull();
+      expect(sceneMode !== null).assertTrue();
       const independent: Component = await driver.findComponent(ON.text('独立灯光控制'));
-      expect(independent).assertNotNull();
+      expect(independent !== null).assertTrue();
       done();
     });
 
     it('独立灯toggle_点击廊灯_toggle状态翻转', 0, async (done: Function) => {
       const langdengRow: Component = await driver.findComponent(ON.text('廊灯'));
-      expect(langdengRow).assertNotNull();
+      expect(langdengRow !== null).assertTrue();
       await langdengRow.click();
       await sleep(600);
-      expect(langdengRow).assertNotNull();
+      expect(langdengRow !== null).assertTrue();
       done();
     });
   });

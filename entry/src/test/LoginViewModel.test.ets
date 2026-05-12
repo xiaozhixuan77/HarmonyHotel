@@ -42,7 +42,7 @@ export default function loginViewModelTest(): void {
 
     it('登录API_正确凭据返回成功响应', 0, async (done: Function) => {
       const vm = new LoginViewModel();
-      vm.loginApi = () => Promise.resolve({
+      vm.loginApi = (): Promise<ApiResponse<string>> => Promise.resolve<ApiResponse<string>>({
         code: 0,
         msg: '登录成功',
         data: 'mock-jwt-token-honysystem-2024',
@@ -56,7 +56,7 @@ export default function loginViewModelTest(): void {
 
     it('登录API_错误凭据返回失败响应', 0, async (done: Function) => {
       const vm = new LoginViewModel();
-      vm.loginApi = () => Promise.resolve({
+      vm.loginApi = (): Promise<ApiResponse<string>> => Promise.resolve<ApiResponse<string>>({
         code: 1,
         msg: '客房号或用户名错误',
         data: '',

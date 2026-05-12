@@ -7,12 +7,15 @@ export default function curtainPageTest(): void {
 
     beforeAll(async () => {
       driver = Driver.create();
+      // 切换到窗帘 tab
+      const curtainTab: Component = await driver.findComponent(ON.text('窗帘'));
+      if (curtainTab !== null) {
+        await curtainTab.click();
+        await sleep(600);
+      }
     });
 
     afterAll(async () => {
-      if (driver) {
-        driver.release();
-      }
     });
 
     beforeEach(async (done: Function) => {
@@ -22,20 +25,20 @@ export default function curtainPageTest(): void {
 
     it('页面渲染_窗帘页关键元素存在', 0, async (done: Function) => {
       const title: Component = await driver.findComponent(ON.text('窗帘控制'));
-      expect(title).assertNotNull();
+      expect(title !== null).assertTrue();
       const openAll: Component = await driver.findComponent(ON.text('全部打开'));
-      expect(openAll).assertNotNull();
+      expect(openAll !== null).assertTrue();
       const closeAll: Component = await driver.findComponent(ON.text('全部关闭'));
-      expect(closeAll).assertNotNull();
+      expect(closeAll !== null).assertTrue();
       done();
     });
 
     it('全开按钮_点击后状态存在', 0, async (done: Function) => {
       const openAll: Component = await driver.findComponent(ON.text('全部打开'));
-      expect(openAll).assertNotNull();
+      expect(openAll !== null).assertTrue();
       await openAll.click();
       await sleep(600);
-      expect(openAll).assertNotNull();
+      expect(openAll !== null).assertTrue();
       done();
     });
   });

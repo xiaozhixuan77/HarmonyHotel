@@ -19,7 +19,10 @@ export class LightViewModel {
   @Trace lightModes: LightMode[] = [];
   @Trace isLoading: boolean = false;
   @Trace currentSceneMode: string = '';
-  @Trace mainSwitchOn: boolean = false;
+
+  get mainSwitchOn(): boolean {
+    return this.lights.length > 0 && this.lights.every((l: Light) => l.on);
+  }
 
   getRoomStateApi: (roomNo: string) => Promise<ApiResponse<RoomState>> = mockGetRoomState;
   setLightModeApi: (hardwareId: number) => Promise<ApiResponse<string>> = mockSetLightMode;
@@ -30,7 +33,6 @@ export class LightViewModel {
     if (res.success && res.data) {
       this.lights = res.data.hardware.lights.map((l: Light) => cloneLight(l, true));
       this.lightModes = res.data.hardware.lightModes;
-      this.updateMainSwitchState();
     }
     this.isLoading = false;
   }
@@ -40,7 +42,6 @@ export class LightViewModel {
     const res: ApiResponse<string> = await this.setLightModeApi(hardwareId);
     if (res.success) {
       this.lights = this.lights.map((l: Light) => cloneLight(l, on));
-      this.updateMainSwitchState();
       this.currentSceneMode = '';
     }
   }
@@ -50,7 +51,6 @@ export class LightViewModel {
     if (res.success) {
       this.currentSceneMode = modeName;
       this.lights = this.lights.map((l: Light) => cloneLight(l, true));
-      this.updateMainSwitchState();
     }
   }
 
@@ -61,10 +61,5 @@ export class LightViewModel {
     const updated: Light[] = this.lights.slice();
     updated[index] = cloneLight(updated[index], !updated[index].on);
     this.lights = updated;
-    this.updateMainSwitchState();
-  }
-
-  private updateMainSwitchState(): void {
-    this.mainSwitchOn = this.lights.length > 0 && this.lights.every((l: Light) => l.on);
   }
 }

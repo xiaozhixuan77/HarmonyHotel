@@ -12,9 +12,6 @@ export default function loginPageTest(): void {
     });
 
     afterAll(async () => {
-      if (driver) {
-        driver.release();
-      }
     });
 
     beforeEach(async (done: Function) => {
@@ -25,7 +22,7 @@ export default function loginPageTest(): void {
 
     it('冷启动_无token_LoginPage正常加载', 0, async (done: Function) => {
       const title: Component = await driver.findComponent(ON.text('智慧客房'));
-      expect(title).assertNotNull();
+      expect(title !== null).assertTrue();
       done();
     });
 
@@ -33,14 +30,15 @@ export default function loginPageTest(): void {
       const roomInput: Component = await driver.findComponent(ON.text('客房号'));
       const userInput: Component = await driver.findComponent(ON.text('用户名'));
       const loginBtn: Component = await driver.findComponent(ON.text('登录'));
-      expect(roomInput).assertNotNull();
-      expect(userInput).assertNotNull();
-      expect(loginBtn).assertNotNull();
+      expect(roomInput !== null).assertTrue();
+      expect(userInput !== null).assertTrue();
+      expect(loginBtn !== null).assertTrue();
       done();
     });
 
     it('输入交互_客房号输入框可输入', 0, async (done: Function) => {
-      const roomInput: Component = await driver.findComponent(ON.type('TextInput').index(0));
+      const textInputs: Component[] = await driver.findComponents(ON.type('TextInput'));
+      const roomInput: Component = textInputs[0];
       await roomInput.click();
       await roomInput.inputText('2002');
       const text: string = await roomInput.getText();
@@ -49,8 +47,9 @@ export default function loginPageTest(): void {
     });
 
     it('登录成功_跳转MainPage', 0, async (done: Function) => {
-      const roomInput: Component = await driver.findComponent(ON.type('TextInput').index(0));
-      const userInput: Component = await driver.findComponent(ON.type('TextInput').index(1));
+      const textInputs: Component[] = await driver.findComponents(ON.type('TextInput'));
+      const roomInput: Component = textInputs[0];
+      const userInput: Component = textInputs[1];
       const loginBtn: Component = await driver.findComponent(ON.text('登录'));
 
       await roomInput.click();
@@ -68,7 +67,7 @@ export default function loginPageTest(): void {
 
       // 验证跳转到 MainPage
       const mainTitle: Component = await driver.findComponent(ON.text('智慧客房'));
-      expect(mainTitle).assertNotNull();
+      expect(mainTitle !== null).assertTrue();
       done();
     });
   });
