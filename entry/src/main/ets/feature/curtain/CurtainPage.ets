@@ -46,18 +46,16 @@ export struct CurtainPage {
             .margin({ bottom: $r('app.float.spacing_sm') })
 
           CurtainSingle({
-            leftState: this.getCurtainState(0),
-            rightState: this.getCurtainState(0),
-            onStateChange: (side: 'left' | 'right', state: CurtainState): void => {
+            state: this.getCurtainState(0),
+            onStateChange: (state: CurtainState): void => {
               this.viewModel.setCurtainState(0, state);
             }
           })
             .margin({ bottom: $r('app.float.spacing_sm') })
 
           WindowScreening({
-            leftState: this.getCurtainState(1),
-            rightState: this.getCurtainState(1),
-            onStateChange: (side: 'left' | 'right', state: CurtainState): void => {
+            state: this.getCurtainState(1),
+            onStateChange: (state: CurtainState): void => {
               this.viewModel.setCurtainState(1, state);
             }
           })
