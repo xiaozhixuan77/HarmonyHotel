@@ -5,6 +5,7 @@ import loginViewModelTest from './LoginViewModel.test';
 import homeViewModelTest from './HomeViewModel.test';
 import lightViewModelTest from './LightViewModel.test';
 import curtainViewModelTest from './CurtainViewModel.test';
+import serviceViewModelTest from './ServiceViewModel.test';
 
 export default function testsuite(): void {
   localUnitTest();
@@ -14,4 +15,5 @@ export default function testsuite(): void {
   homeViewModelTest();
   lightViewModelTest();
   curtainViewModelTest();
+  serviceViewModelTest();
 }

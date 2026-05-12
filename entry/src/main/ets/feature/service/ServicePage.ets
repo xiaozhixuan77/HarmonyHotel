@@ -1,5 +1,59 @@
+import { common } from '@kit.AbilityKit';
+import { router, promptAction, AlertDialog } from '@kit.ArkUI';
+import { ServiceViewModel } from './ServiceViewModel';
+import { DNDToggle } from './components/DNDToggle';
+import { CleanRoom } from './components/CleanRoom';
+import { SOSButton } from './components/SOSButton';
+
 @ComponentV2
 export struct ServicePage {
+  @Local viewModel: ServiceViewModel = new ServiceViewModel();
+
+  async aboutToAppear(): Promise<void> {
+    await this.viewModel.loadServices();
+  }
+
+  private showLogoutConfirm(): void {
+    AlertDialog.show({
+      title: $r('app.string.service_logout'),
+      message: '确定要退出登录吗？',
+      primaryButton: {
+        value: $r('app.string.common_cancel'),
+        action: () => {}
+      },
+      secondaryButton: {
+        value: $r('app.string.common_confirm'),
+        action: async () => {
+          const context: common.Context = getContext(this) as common.Context;
+          await this.viewModel.logout(context);
+          router.replaceUrl({ url: 'feature/login/LoginPage' });
+        }
+      }
+    });
+  }
+
+  private showSOSConfirm(): void {
+    AlertDialog.show({
+      title: '紧急求救',
+      message: '确定要发送 SOS 紧急求救信号吗？',
+      primaryButton: {
+        value: $r('app.string.common_cancel'),
+        action: () => {}
+      },
+      secondaryButton: {
+        value: $r('app.string.common_confirm'),
+        fontColor: '#E53935',
+        action: () => {
+          this.viewModel.triggerSOS();
+          promptAction.showToast({
+            message: 'SOS 信号已发送',
+            duration: 2000
+          });
+        }
+      }
+    });
+  }
+
   build() {
     Stack() {
       Image($r('app.media.service_bg'))
@@ -7,20 +61,69 @@ export struct ServicePage {
         .height('100%')
         .objectFit(ImageFit.Cover)
 
-      Column() {
-        Text($r('app.string.page_service'))
-          .fontSize($r('app.float.text_title'))
-          .fontColor($r('app.color.text_primary'))
-          .fontWeight(FontWeight.Bold)
-        Text('待步骤八实现完整服务模块')
-          .fontSize($r('app.float.text_caption'))
-          .fontColor($r('app.color.text_hint'))
-          .margin({ top: 8 })
+      Scroll() {
+        Column() {
+          Text($r('app.string.page_service'))
+            .fontSize($r('app.float.text_title'))
+            .fontColor($r('app.color.text_primary'))
+            .fontWeight(FontWeight.Bold)
+            .width('100%')
+            .margin({ top: 24, bottom: 20 })
+
+          DNDToggle({
+            isOn: this.viewModel.dndOn,
+            onToggle: (): void => {
+              this.viewModel.toggleDND();
+            }
+          })
+            .margin({ bottom: $r('app.float.spacing_sm') })
+
+          CleanRoom({
+            isRequested: this.viewModel.cleanRequested,
+            onClick: (): void => {
+              this.viewModel.requestClean();
+              promptAction.showToast({
+                message: '已通知客房服务',
+                duration: 2000
+              });
+            }
+          })
+            .margin({ bottom: $r('app.float.spacing_sm') })
+
+          SOSButton({
+            onConfirm: (): void => {
+              this.showSOSConfirm();
+            }
+          })
+            .margin({ bottom: $r('app.float.spacing_sm') })
+
+          Row() {
+            Image($r('app.media.service_btn_logout'))
+              .width($r('app.float.icon_size_button'))
+              .height($r('app.float.icon_size_button'))
+              .margin({ right: $r('app.float.spacing_sm') })
+
+            Text($r('app.string.service_logout'))
+              .fontSize($r('app.float.text_body'))
+              .fontColor($r('app.color.text_primary'))
+          }
+          .width('100%')
+          .height(56)
+          .justifyContent(FlexAlign.Center)
+          .alignItems(VerticalAlign.Center)
+          .backgroundColor('rgba(255, 255, 255, 0.08)')
+          .borderRadius($r('app.float.radius_card'))
+          .onClick(() => {
+            this.showLogoutConfirm();
+          })
+        }
+        .width('100%')
+        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg'), bottom: 24 })
       }
       .width('100%')
       .height('100%')
-      .justifyContent(FlexAlign.Center)
-      .backgroundColor($r('app.color.background'))
+      .scrollBar(BarState.Off)
+      .edgeEffect(EdgeEffect.Spring)
     }
     .width('100%')
     .height('100%')
