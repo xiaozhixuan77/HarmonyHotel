@@ -26,20 +26,20 @@ export struct HomePage {
                 .width(140)
                 .height(32)
                 .objectFit(ImageFit.Contain)
-                .margin({left:10})
+                .margin({left:8})
               Row() {
                 Text($r('app.string.home_welcome'))
                   .fontSize($r('app.float.text_caption'))
                   .fontColor($r('app.color.text_secondary'))
-                  .margin({left:15})
+                  .margin({left:13})
                 Text('，房号 ')
                   .fontSize($r('app.float.text_caption'))
                   .fontColor($r('app.color.text_secondary'))
                 Text(this.viewModel.roomNumber)
                   .fontSize($r('app.float.text_caption'))
                   .fontColor($r('app.color.text_secondary'))
-              }
 
+              }
               .margin({ top: 2 })
             }
             .alignItems(HorizontalAlign.Start)

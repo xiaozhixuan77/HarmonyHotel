@@ -132,7 +132,7 @@ export struct PhoneMainLayout {
   }
 
   build() {
-    Stack() {
+    Stack({alignContent: Alignment.Bottom}) {
       Image($r('app.media.tabs_bg'))
         .width('100%')
         .height($r('app.float.tab_bar_height'))

@@ -1,5 +1,3 @@
-import { rpc } from "@kit.IPCKit";
-
 @ComponentV2
 export struct AirconControl {
   @Param settingTemp: number = 22;
@@ -116,6 +114,7 @@ export struct AirconControl {
     .width('100%')
     .height('150vp')
     .borderRadius($r('app.float.radius_card'))
+    .padding($r('app.float.spacing_md'))
     .clip(true)
   }
 }
