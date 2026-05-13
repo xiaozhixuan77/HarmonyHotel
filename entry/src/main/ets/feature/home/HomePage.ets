@@ -32,7 +32,7 @@ export struct HomePage {
                   .fontSize($r('app.float.text_caption'))
                   .fontColor($r('app.color.text_secondary'))
                   .margin({left:13})
-                Text('，房号 ')
+                Text($r('app.string.home_room_prefix'))
                   .fontSize($r('app.float.text_caption'))
                   .fontColor($r('app.color.text_secondary'))
                 Text(this.viewModel.roomNumber)

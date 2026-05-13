@@ -25,11 +25,11 @@ export class LoginViewModel {
 
   validate(): boolean {
     if (this.roomNo.trim().length === 0) {
-      this.errorMsg = '请输入客房号';
+      this.errorMsg = $r('app.string.login_error_empty_room').toString();
       return false;
     }
     if (this.firstName.trim().length === 0) {
-      this.errorMsg = '请输入用户名';
+      this.errorMsg = $r('app.string.login_error_empty_user').toString();
       return false;
     }
     return true;
@@ -57,11 +57,11 @@ export class LoginViewModel {
         }
         return true;
       } else {
-        this.errorMsg = res.msg || '登录失败';
+        this.errorMsg = res.msg || $r('app.string.login_error_auth').toString();
         return false;
       }
     } catch (err) {
-      this.errorMsg = '网络连接失败';
+      this.errorMsg = $r('app.string.common_network_error').toString();
       return false;
     } finally {
       this.isLoading = false;

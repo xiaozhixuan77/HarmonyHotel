@@ -15,11 +15,11 @@ export struct ServicePage {
 
   private showLogoutConfirm(): void {
     promptAction.showDialog({
-      title: '退出登录',
+      title: $r('app.string.service_logout'),
       message: '确定要退出登录吗？',
       buttons: [
-        { text: '取消', color: '#666666' },
-        { text: '确认', color: '#4A90D9' }
+        { text: $r('app.string.common_cancel'), color: '#666666' },
+        { text: $r('app.string.common_confirm'), color: '#4A90D9' }
       ]
     }).then(async (data) => {
       if (data.index === 1) {
@@ -32,11 +32,11 @@ export struct ServicePage {
 
   private showSOSConfirm(): void {
     promptAction.showDialog({
-      title: '紧急求救',
+      title: $r('app.string.service_sos'),
       message: '确定要发送 SOS 紧急求救信号吗？',
       buttons: [
-        { text: '取消', color: '#666666' },
-        { text: '确认', color: '#E53935' }
+        { text: $r('app.string.common_cancel'), color: '#666666' },
+        { text: $r('app.string.common_confirm'), color: '#E53935' }
       ]
     }).then((data) => {
       if (data.index === 1) {
