@@ -79,11 +79,19 @@ export struct ServicePage {
               CleanRoom({
                 isOn: this.viewModel.cleanRequested,
                 onToggle: (): void => {
-                  this.viewModel.requestClean();
-                  promptAction.showToast({
-                    message: '已通知客房服务',
-                    duration: 2000
-                  });
+                  if (this.viewModel.cleanRequested) {
+                    this.viewModel.cancelClean();
+                    promptAction.showToast({
+                      message: '已取消客房服务',
+                      duration: 2000
+                    });
+                  } else {
+                    this.viewModel.requestClean();
+                    promptAction.showToast({
+                      message: '已通知客房服务',
+                      duration: 2000
+                    });
+                  }
                 }
               })
                 .layoutWeight(1)
@@ -113,7 +121,7 @@ export struct ServicePage {
         }
         .width('100%')
         .height('100%')
-        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg'), bottom: 24 })
+        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg'), bottom: 24 ,top: 24})
       }
       .width('100%')
       .height('100%')

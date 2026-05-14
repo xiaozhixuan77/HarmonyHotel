@@ -54,7 +54,7 @@ export struct IndependentLight {
 
                 Blank()
 
-                Image(light.on ? $r('app.media.light_toggle_on') : $r('app.media.light_toggle_off'))
+                  Image(light.on ? $r('app.media.light_toggle_on') : $r('app.media.light_toggle_off'))
                   .width(24)
                   .height(24)
                   .objectFit(ImageFit.Contain)

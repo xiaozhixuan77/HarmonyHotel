@@ -2,6 +2,7 @@ import { HomeViewModel } from './HomeViewModel';
 import { AirconControl } from './components/AirconControl';
 import { SceneModePanel } from './components/SceneModePanel';
 import { ServiceStatus } from './components/ServiceStatus';
+import { promptAction } from '@kit.ArkUI';
 @Entry
 @ComponentV2
 export struct HomePage {
@@ -79,7 +80,13 @@ export struct HomePage {
             dndActive: this.viewModel.dndActive,
             cleanRequested: this.viewModel.cleanRequested,
             onDNDToggle: (): void => { this.viewModel.toggleDND(); },
-            onCleanToggle: (): void => { this.viewModel.toggleClean(); },
+            onCleanToggle: (): void => {
+              this.viewModel.toggleClean();
+              promptAction.showToast({
+                message: this.viewModel.cleanRequested ? '已通知客房服务' : '已取消客房服务',
+                duration: 2000
+              });
+            },
             onGoodNight: (): void => { this.viewModel.goodNightMode(); }
           })
         }

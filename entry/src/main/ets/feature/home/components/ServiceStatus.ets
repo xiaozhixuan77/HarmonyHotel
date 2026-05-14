@@ -87,8 +87,8 @@ export struct ServiceStatus {
 
         Row() {
           Image($r('app.media.home_icon_night_left'))
-            .width(28)
-            .height(28)
+            .width(32)
+            .height(32)
 
           Column() {
             Text($r('app.string.home_good_night'))
@@ -105,13 +105,13 @@ export struct ServiceStatus {
           .margin({ left: 12, right: 12 })
 
           Image($r('app.media.home_icon_night_right'))
-            .width(28)
-            .height(28)
+            .width(30)
+            .height(30)
         }
         .width('100%')
         .height('100%')
         .alignItems(VerticalAlign.Center)
-        .padding({ left: $r('app.float.spacing_md'), right: $r('app.float.spacing_md') })
+        .padding({ left: '30vp', right: '25vp' })
       }
       .width('100%')
       .height(64)

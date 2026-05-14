@@ -50,7 +50,8 @@ export class LightViewModel {
     const res: ApiResponse<string> = await this.setLightModeApi(modeId);
     if (res.success) {
       this.currentSceneMode = modeName;
-      this.lights = this.lights.map((l: Light) => cloneLight(l, true));
+      const allOn: boolean = modeId !== 103004 && modeId !== 103123;
+      this.lights = this.lights.map((l: Light) => cloneLight(l, allOn));
     }
   }
 

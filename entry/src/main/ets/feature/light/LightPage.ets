@@ -53,7 +53,7 @@ export struct LightPage {
           })
         }
         .width('100%')
-        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg'), bottom: 24 })
+        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg'), bottom: 24 ,top: 24})
       }
       .width('100%')
       .height('100%')

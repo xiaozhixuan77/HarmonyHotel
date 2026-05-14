@@ -43,6 +43,10 @@ export class ServiceViewModel {
     this.cleanRequested = true;
   }
 
+  cancelClean(): void {
+    this.cleanRequested = false;
+  }
+
   triggerSOS(): void {
     this.sosTriggered = true;
   }
