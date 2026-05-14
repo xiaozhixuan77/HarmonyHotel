@@ -19,7 +19,8 @@ export default function homePageTest(): void {
 
     it('温度加_点击加号_设定温度增加', 0, async (done: Function) => {
       const images: Component[] = await driver.findComponents(ON.type('Image'));
-      const addBtn: Component = images[2];
+      // AirconControl 中 Image 顺序: [0]背景图 [1]空调图标 [2]关闭按钮 [3]减号 [4]加号
+      const addBtn: Component = images[4];
       await addBtn.click();
       await sleep(600);
       // 验证温度显示变化
@@ -30,7 +31,7 @@ export default function homePageTest(): void {
 
     it('温度减_点击减号_设定温度减少', 0, async (done: Function) => {
       const images: Component[] = await driver.findComponents(ON.type('Image'));
-      const subBtn: Component = images[1];
+      const subBtn: Component = images[3];
       await subBtn.click();
       await sleep(600);
       const tempText: Component = await driver.findComponent(ON.text('21°C'));
@@ -40,7 +41,7 @@ export default function homePageTest(): void {
 
     it('AC开关_点击关闭_AC状态变为关', 0, async (done: Function) => {
       const images: Component[] = await driver.findComponents(ON.type('Image'));
-      const acIcon: Component = images[0];
+      const acIcon: Component = images[2];
       await acIcon.click();
       await sleep(600);
       // 验证 AC icon 变为 close 状态
