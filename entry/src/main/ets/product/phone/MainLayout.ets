@@ -133,12 +133,6 @@ export struct PhoneMainLayout {
 
   build() {
     Stack({alignContent: Alignment.Bottom}) {
-      Image($r('app.media.tabs_bg'))
-        .width('100%')
-        .height($r('app.float.tab_bar_height'))
-        .objectFit(ImageFit.Fill)
-        .align(Alignment.Bottom)
-
       Tabs({
         index: this.currentTab,
         barPosition: BarPosition.End
@@ -146,25 +140,20 @@ export struct PhoneMainLayout {
         TabContent() {
           HomePage()
         }
-        .tabBar(this.tabHome)
 
         TabContent() {
           LightPage()
         }
-        .tabBar(this.tabLight)
 
         TabContent() {
           CurtainPage()
         }
-        .tabBar(this.tabCurtain)
 
         TabContent() {
           ServicePage()
         }
-        .tabBar(this.tabService)
       }
-      .barHeight($r('app.float.tab_bar_height'))
-      .barBackgroundColor('rgba(0,0,0,0)')
+      .barHeight(0)
       .backgroundColor('rgba(0,0,0,0)')
       .animationDuration(200)
       .onChange((index: number) => {
@@ -172,6 +161,53 @@ export struct PhoneMainLayout {
       })
       .width('100%')
       .height('100%')
+
+      Image($r('app.media.tabs_bg'))
+        .width('100%')
+        .height($r('app.float.tab_bar_height'))
+        .objectFit(ImageFit.Fill)
+        .align(Alignment.Bottom)
+
+      Row() {
+        Column() {
+          this.tabHome()
+        }
+        .layoutWeight(1)
+        .height('100%')
+        .onClick(() => {
+          this.currentTab = 0;
+        })
+
+        Column() {
+          this.tabLight()
+        }
+        .layoutWeight(1)
+        .height('100%')
+        .onClick(() => {
+          this.currentTab = 1;
+        })
+
+        Column() {
+          this.tabCurtain()
+        }
+        .layoutWeight(1)
+        .height('100%')
+        .onClick(() => {
+          this.currentTab = 2;
+        })
+
+        Column() {
+          this.tabService()
+        }
+        .layoutWeight(1)
+        .height('100%')
+        .onClick(() => {
+          this.currentTab = 3;
+        })
+      }
+      .width('100%')
+      .height($r('app.float.tab_bar_height'))
+      .align(Alignment.Bottom)
     }
     .width('100%')
     .height('100%')
