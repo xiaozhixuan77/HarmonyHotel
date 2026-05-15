@@ -1,0 +1,12 @@
+{
+  "module": {
+    "name": "common",
+    "type": "har",
+    "description": "Common utilities, models, API service, and mocks",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+  }
+}

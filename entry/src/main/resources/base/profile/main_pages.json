@@ -1,6 +1,0 @@
-{
-  "src": [
-    "feature/login/LoginPage",
-    "feature/main/MainPage"
-  ]
-}

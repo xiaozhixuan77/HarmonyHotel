@@ -1,0 +1,48 @@
+{
+  "float": [
+    {
+      "name": "spacing_sm",
+      "value": "12vp"
+    },
+    {
+      "name": "spacing_md",
+      "value": "8vp"
+    },
+    {
+      "name": "spacing_lg",
+      "value": "20vp"
+    },
+    {
+      "name": "radius_card",
+      "value": "16vp"
+    },
+    {
+      "name": "radius_button",
+      "value": "24vp"
+    },
+    {
+      "name": "text_title",
+      "value": "24fp"
+    },
+    {
+      "name": "text_body",
+      "value": "20fp"
+    },
+    {
+      "name": "text_caption",
+      "value": "16fp"
+    },
+    {
+      "name": "icon_size_tab",
+      "value": "24vp"
+    },
+    {
+      "name": "icon_size_button",
+      "value": "32vp"
+    },
+    {
+      "name": "tab_bar_height",
+      "value": "56vp"
+    }
+  ]
+}

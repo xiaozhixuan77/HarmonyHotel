@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "page_service",
+      "value": "服务控制"
+    },
+    {
+      "name": "service_dnd",
+      "value": "请勿打扰"
+    },
+    {
+      "name": "service_clean",
+      "value": "清理房间"
+    },
+    {
+      "name": "service_sos",
+      "value": "SOS 紧急呼叫"
+    },
+    {
+      "name": "service_logout",
+      "value": "退出登录"
+    },
+    {
+      "name": "common_confirm",
+      "value": "确认"
+    },
+    {
+      "name": "common_cancel",
+      "value": "取消"
+    }
+  ]
+}

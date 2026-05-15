@@ -1,0 +1,9 @@
+{
+  "name": "@ohos/common",
+  "version": "1.0.0",
+  "description": "Common utilities, models, API service, and mocks",
+  "main": "src/main/ets/Index.ets",
+  "author": "",
+  "license": "",
+  "dependencies": {}
+}

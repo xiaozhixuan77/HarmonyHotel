@@ -1,0 +1,30 @@
+{
+  "modulePathMap": {
+    "common": "E:\\HarmonyHotel\\HonySystem\\common",
+    "login": "E:\\HarmonyHotel\\HonySystem\\features\\login",
+    "home": "E:\\HarmonyHotel\\HonySystem\\features\\home",
+    "light": "E:\\HarmonyHotel\\HonySystem\\features\\light",
+    "curtain": "E:\\HarmonyHotel\\HonySystem\\features\\curtain",
+    "service": "E:\\HarmonyHotel\\HonySystem\\features\\service",
+    "entry": "E:\\HarmonyHotel\\HonySystem\\products\\entry"
+  },
+  "compileMode": "esmodule",
+  "projectRootPath": "E:\\HarmonyHotel\\HonySystem",
+  "nodeModulesPath": "E:\\HarmonyHotel\\HonySystem\\products\\entry\\.preview\\default\\intermediates\\loader_out\\default\\node_modules",
+  "byteCodeHarInfo": {},
+  "declarationEntry": [],
+  "moduleName": "entry",
+  "hspNameOhmMap": {},
+  "harNameOhmMap": {},
+  "packageManagerType": "ohpm",
+  "compileEntry": [],
+  "otherCompileFiles": [],
+  "dynamicImportLibInfo": {},
+  "routerMap": [],
+  "hspResourcesMap": {},
+  "updateVersionInfo": {},
+  "customizedHar": false,
+  "anBuildOutPut": "E:\\HarmonyHotel\\HonySystem\\products\\entry\\.preview\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
+  "anBuildMode": "type",
+  "buildConfigPath": ".preview\\config\\buildConfig.json"
+}

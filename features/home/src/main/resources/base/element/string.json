@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "home_welcome",
+      "value": "欢迎回家"
+    },
+    {
+      "name": "home_ac_running",
+      "value": "运行中"
+    },
+    {
+      "name": "home_temp_setting",
+      "value": "设定温度"
+    },
+    {
+      "name": "home_temp_current",
+      "value": "当前温度"
+    },
+    {
+      "name": "light_bright",
+      "value": "明亮模式"
+    },
+    {
+      "name": "light_soft",
+      "value": "柔和模式"
+    },
+    {
+      "name": "light_read",
+      "value": "阅读模式"
+    },
+    {
+      "name": "light_warm",
+      "value": "温馨模式"
+    },
+    {
+      "name": "service_dnd",
+      "value": "请勿打扰"
+    },
+    {
+      "name": "service_clean",
+      "value": "清理房间"
+    },
+    {
+      "name": "home_room_prefix",
+      "value": "房号 "
+    },
+    {
+      "name": "home_ac_label",
+      "value": "空调"
+    },
+    {
+      "name": "home_scene_mode",
+      "value": "场景模式"
+    },
+    {
+      "name": "home_quick_service",
+      "value": "快捷服务"
+    },
+    {
+      "name": "home_good_night",
+      "value": "晚安模式"
+    },
+    {
+      "name": "home_good_night_desc",
+      "value": "一键关闭所有灯光"
+    }
+  ]
+}

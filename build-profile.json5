@@ -27,8 +27,32 @@
   },
   "modules": [
     {
+      "name": "common",
+      "srcPath": "./common"
+    },
+    {
+      "name": "login",
+      "srcPath": "./features/login"
+    },
+    {
+      "name": "home",
+      "srcPath": "./features/home"
+    },
+    {
+      "name": "light",
+      "srcPath": "./features/light"
+    },
+    {
+      "name": "curtain",
+      "srcPath": "./features/curtain"
+    },
+    {
+      "name": "service",
+      "srcPath": "./features/service"
+    },
+    {
       "name": "entry",
-      "srcPath": "./entry",
+      "srcPath": "./products/entry",
       "targets": [
         {
           "name": "default",
