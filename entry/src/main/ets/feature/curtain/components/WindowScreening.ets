@@ -5,24 +5,31 @@ export struct WindowScreening {
   @Param state: CurtainState = 'close';
   @Event onStateChange: (state: CurtainState) => void = (_state: CurtainState) => {};
 
-  private getLeftIcon(state: CurtainState): Resource {
-    if (state === 'open') {
-      return $r('app.media.curtain_icon_window_screening_left_part');
-    } else if (state === 'close') {
-      return $r('app.media.curtain_icon_window_screening_left_part_closed');
-    } else {
-      return $r('app.media.curtain_icon_window_screening_left_part');
+  private getLeftOffset(): number {
+    if (this.state === 'open') {
+      return -60;
+    } else if (this.state === 'pause' || this.state === 'half') {
+      return -20;
     }
+    return 0;
   }
 
-  private getRightIcon(state: CurtainState): Resource {
-    if (state === 'open') {
-      return $r('app.media.curtain_icon_window_screening_right_part');
-    } else if (state === 'close') {
-      return $r('app.media.curtain_icon_window_screening_right_part_closed');
-    } else {
-      return $r('app.media.curtain_icon_window_screening_right_part');
+  private getRightOffset(): number {
+    if (this.state === 'open') {
+      return 60;
+    } else if (this.state === 'pause' || this.state === 'half') {
+      return 20;
     }
+    return 0;
+  }
+
+  private getCurtainWidth(): number {
+    if (this.state === 'open') {
+      return 0;
+    } else if (this.state === 'pause' || this.state === 'half') {
+      return 50;
+    }
+    return 100;
   }
 
   private getBtnBg(isSelected: boolean): Resource {
@@ -49,15 +56,19 @@ export struct WindowScreening {
           .height(5)
 
         Row() {
-          Image(this.getLeftIcon(this.state))
-            .width(100)
+          Image($r('app.media.curtain_icon_window_screening_left_part_closed'))
+            .width(this.getCurtainWidth())
             .height(100)
             .objectFit(ImageFit.Contain)
+            .translate({ x: this.getLeftOffset() })
+            .animation({ duration: 500, curve: Curve.EaseInOut })
 
-          Image(this.getRightIcon(this.state))
-            .width(100)
+          Image($r('app.media.curtain_icon_window_screening_right_part_closed'))
+            .width(this.getCurtainWidth())
             .height(100)
             .objectFit(ImageFit.Contain)
+            .translate({ x: this.getRightOffset() })
+            .animation({ duration: 500, curve: Curve.EaseInOut })
         }
         .width('100%')
         .height(110)
