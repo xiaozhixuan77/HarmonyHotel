@@ -7,29 +7,20 @@ export struct CurtainSingle {
 
   private getLeftOffset(): number {
     if (this.state === 'open') {
-      return -60;
+      return -100;
     } else if (this.state === 'pause' || this.state === 'half') {
-      return -20;
+      return -30;
     }
     return 0;
   }
 
   private getRightOffset(): number {
     if (this.state === 'open') {
-      return 60;
+      return 100;
     } else if (this.state === 'pause' || this.state === 'half') {
-      return 20;
+      return 30;
     }
     return 0;
-  }
-
-  private getCurtainWidth(): number {
-    if (this.state === 'open') {
-      return 0;
-    } else if (this.state === 'pause' || this.state === 'half') {
-      return 50;
-    }
-    return 100;
   }
 
   private getBtnBg(isSelected: boolean): Resource {
@@ -56,19 +47,29 @@ export struct CurtainSingle {
           .height(5)
 
         Row() {
-          Image($r('app.media.curtain_icon_left_closed'))
-            .width(this.getCurtainWidth())
-            .height(100)
-            .objectFit(ImageFit.Contain)
-            .translate({ x: this.getLeftOffset() })
-            .animation({ duration: 500, curve: Curve.EaseInOut })
+          Stack() {
+            Image($r('app.media.curtain_icon_left_closed'))
+              .width(100)
+              .height(100)
+              .objectFit(ImageFit.Contain)
+              .translate({ x: this.getLeftOffset() })
+              .animation({ duration: 500, curve: Curve.EaseInOut })
+          }
+          .width(90)
+          .height(100)
+          .clip(true)
 
-          Image($r('app.media.curtain_icon_right_closed'))
-            .width(this.getCurtainWidth())
-            .height(100)
-            .objectFit(ImageFit.Contain)
-            .translate({ x: this.getRightOffset() })
-            .animation({ duration: 500, curve: Curve.EaseInOut })
+          Stack() {
+            Image($r('app.media.curtain_icon_right_closed'))
+              .width(100)
+              .height(100)
+              .objectFit(ImageFit.Contain)
+              .translate({ x: this.getRightOffset() })
+              .animation({ duration: 500, curve: Curve.EaseInOut })
+          }
+          .width(90)
+          .height(100)
+          .clip(true)
         }
         .width('100%')
         .height(110)
