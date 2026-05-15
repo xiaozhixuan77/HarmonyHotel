@@ -24,7 +24,7 @@ export class CurtainViewModel {
     this.isLoading = true;
     const res: ApiResponse<RoomState> = await this.getRoomStateApi('2002');
     if (res.success && res.data) {
-      this.curtains = res.data.hardware.curtains.map((c: Curtain) => cloneCurtain(c, 'close'));
+      this.curtains = res.data.hardware.curtains.map((c: Curtain) => cloneCurtain(c, c.state || 'close'));
     }
     this.isLoading = false;
   }
@@ -37,8 +37,10 @@ export class CurtainViewModel {
     if (index < 0 || index >= this.curtains.length) {
       return;
     }
-    const updated: Curtain[] = this.curtains.slice();
-    updated[index] = cloneCurtain(updated[index], state);
-    this.curtains = updated;
+    const current = this.curtains[index];
+    if (current.state === state) {
+      return;
+    }
+    this.curtains.splice(index, 1, cloneCurtain(current, state));
   }
 }
