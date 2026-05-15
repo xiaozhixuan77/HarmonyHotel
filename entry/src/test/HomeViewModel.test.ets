@@ -142,5 +142,57 @@ export default function homeViewModelTest(): void {
       expect(vm.acPower).assertFalse();
       done();
     });
+
+    it('toggleDND_状态翻转', 0, () => {
+      const vm = new HomeViewModel();
+      expect(vm.dndActive).assertFalse();
+      vm.toggleDND();
+      expect(vm.dndActive).assertTrue();
+      vm.toggleDND();
+      expect(vm.dndActive).assertFalse();
+    });
+
+    it('toggleClean_状态翻转', 0, () => {
+      const vm = new HomeViewModel();
+      expect(vm.cleanRequested).assertFalse();
+      vm.toggleClean();
+      expect(vm.cleanRequested).assertTrue();
+      vm.toggleClean();
+      expect(vm.cleanRequested).assertFalse();
+    });
+
+    it('loadRoomState_失败_isLoading重置', 0, async (done: Function) => {
+      const vm = new HomeViewModel();
+      vm.getRoomStateApi = () => Promise.resolve({ code: 1, msg: '失败', data: createMockRoomState().data, success: false } as ApiResponse<RoomState>);
+      await vm.loadRoomState();
+      expect(vm.isLoading).assertFalse();
+      done();
+    });
+
+    it('温度加_已达上限_API不调用', 0, () => {
+      const vm = new HomeViewModel();
+      let apiCalled = false;
+      vm.clickAirBtnApi = (): Promise<ApiResponse<string>> => {
+        apiCalled = true;
+        return Promise.resolve({ code: 0, msg: '', data: '', success: true } as ApiResponse<string>);
+      };
+      vm.settingTemp = 30;
+      vm.tempUp();
+      expect(vm.settingTemp).assertEqual(30);
+      expect(apiCalled).assertFalse();
+    });
+
+    it('温度减_已达下限_API不调用', 0, () => {
+      const vm = new HomeViewModel();
+      let apiCalled = false;
+      vm.clickAirBtnApi = (): Promise<ApiResponse<string>> => {
+        apiCalled = true;
+        return Promise.resolve({ code: 0, msg: '', data: '', success: true } as ApiResponse<string>);
+      };
+      vm.settingTemp = 16;
+      vm.tempDown();
+      expect(vm.settingTemp).assertEqual(16);
+      expect(apiCalled).assertFalse();
+    });
   });
 }

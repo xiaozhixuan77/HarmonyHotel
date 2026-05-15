@@ -55,6 +55,16 @@ export function mockClickAirBtn(cmd: string, value: number, airId: number): Prom
         return;
       }
 
+      if (cmd !== 'temp' && cmd !== 'mode' && cmd !== 'speed' && cmd !== 'power') {
+        resolve({
+          code: 1,
+          msg: '参数格式不正确',
+          data: '',
+          success: false
+        });
+        return;
+      }
+
       resolve({
         code: 0,
         data: 'success',

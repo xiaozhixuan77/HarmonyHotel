@@ -120,8 +120,8 @@ export struct ServicePage {
             })
         }
         .width('100%')
-        .height('100%')
-        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg'), bottom: 24 ,top: 24})
+        .height('90%')
+        .padding({ left: $r('app.float.spacing_lg'), right: $r('app.float.spacing_lg'), bottom: 24 })
       }
       .width('100%')
       .height('100%')

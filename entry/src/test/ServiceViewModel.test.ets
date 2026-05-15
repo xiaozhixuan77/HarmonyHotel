@@ -3,6 +3,7 @@ import { common } from '@kit.AbilityKit';
 import { ServiceViewModel } from '../main/ets/feature/service/ServiceViewModel';
 import { ApiResponse } from '../main/ets/common/model/ApiResponse';
 import { RoomState, Service, StateFlags } from '../main/ets/common/model/DeviceModels';
+import { setToken, getStoredToken, clearToken } from '../main/ets/common/api/ApiService';
 
 function makeService(code: string, name: string, id: number, active?: boolean): Service {
   return { code, name, id, active };
@@ -13,16 +14,9 @@ function makeStateFlags(wurao: string, qingli: string): StateFlags {
     qingli: qingli,
     wurao: wurao,
     sos: '0',
-    light_mode_1: '0',
-    light_mode_2: '0',
-    light_mode_3: '0',
-    light_mode_4: '0',
-    light_mode_5: '0',
-    light_mode_6: '0',
-    shaohou: '0',
-    tui: '0',
-    menci: '0',
-    ruzhu: '0'
+    light_mode_1: '0', light_mode_2: '0', light_mode_3: '0',
+    light_mode_4: '0', light_mode_5: '0', light_mode_6: '0',
+    shaohou: '0', tui: '0', menci: '0', ruzhu: '0'
   };
 }
 
@@ -68,6 +62,23 @@ export default function serviceViewModelTest(): void {
       done();
     });
 
+    it('loadServices_从Mock初始化dnd和clean状态', 0, async (done: Function) => {
+      const vm = new ServiceViewModel();
+      vm.getRoomStateApi = (): Promise<ApiResponse<RoomState>> => Promise.resolve(createMockRoomState('1', '1'));
+      await vm.loadServices();
+      expect(vm.dndOn).assertTrue();
+      expect(vm.cleanRequested).assertTrue();
+      done();
+    });
+
+    it('loadServices_失败_isLoading重置', 0, async (done: Function) => {
+      const vm = new ServiceViewModel();
+      vm.getRoomStateApi = (): Promise<ApiResponse<RoomState>> => Promise.resolve({ code: 1, msg: '失败', data: createMockRoomState().data, success: false } as ApiResponse<RoomState>);
+      await vm.loadServices();
+      expect(vm.isLoading).assertFalse();
+      done();
+    });
+
     it('DND开启_wurao状态变为true', 0, async (done: Function) => {
       const vm = new ServiceViewModel();
       vm.getRoomStateApi = (): Promise<ApiResponse<RoomState>> => Promise.resolve(createMockRoomState('0', '0'));
@@ -98,6 +109,16 @@ export default function serviceViewModelTest(): void {
       done();
     });
 
+    it('取消清理_qingli状态变为false', 0, async (done: Function) => {
+      const vm = new ServiceViewModel();
+      vm.getRoomStateApi = (): Promise<ApiResponse<RoomState>> => Promise.resolve(createMockRoomState('0', '1'));
+      await vm.loadServices();
+      expect(vm.cleanRequested).assertTrue();
+      vm.cancelClean();
+      expect(vm.cleanRequested).assertFalse();
+      done();
+    });
+
     it('SOS点击_sosTriggered变为true', 0, () => {
       const vm = new ServiceViewModel();
       expect(vm.sosTriggered).assertFalse();
@@ -105,21 +126,16 @@ export default function serviceViewModelTest(): void {
       expect(vm.sosTriggered).assertTrue();
     });
 
-    it('SOS取消_状态不变', 0, () => {
-      const vm = new ServiceViewModel();
-      expect(vm.sosTriggered).assertFalse();
-      // 取消操作不调用 triggerSOS，状态应保持 false
-      expect(vm.sosTriggered).assertFalse();
-    });
-
     it('退出登录_清除token', 0, async (done: Function) => {
       const vm = new ServiceViewModel();
-      // logout 依赖 Context，在测试环境中传入一个 mock 对象
-      const mockContext = {} as common.Context;
-      await vm.logout(mockContext);
-      // 由于 PreferencesUtil 在测试环境中可能不可用，
-      // 只要调用不抛异常即认为通过
-      expect(true).assertTrue();
+      setToken('test-token-logout');
+      try {
+        const mockContext = {} as common.Context;
+        await vm.logout(mockContext);
+      } catch (e) {
+        // Preferences 在测试环境可能不可用，忽略
+      }
+      expect(getStoredToken()).assertEqual('');
       done();
     });
   });

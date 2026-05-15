@@ -138,5 +138,20 @@ export default function curtainViewModelTest(): void {
       expect(vm.curtains[0].state).assertEqual('open');
       expect(vm.curtains[1].state).assertEqual('close');
     });
+
+    it('setCurtainState_索引越界_不报错', 0, () => {
+      const vm = new CurtainViewModel();
+      vm.curtains = [makeCurtain(0, '1', '窗帘1', '房间', 103137, 'close')];
+      vm.setCurtainState(-1, 'open');
+      vm.setCurtainState(999, 'open');
+      expect(vm.curtains[0].state).assertEqual('close');
+    });
+
+    it('setCurtainState_状态相同_不操作', 0, () => {
+      const vm = new CurtainViewModel();
+      vm.curtains = [makeCurtain(0, '1', '窗帘1', '房间', 103137, 'open')];
+      vm.setCurtainState(0, 'open');
+      expect(vm.curtains[0].state).assertEqual('open');
+    });
   });
 }

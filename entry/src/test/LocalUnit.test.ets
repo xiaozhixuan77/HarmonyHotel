@@ -1,33 +1,24 @@
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
+import { setToken, getStoredToken, clearToken } from '../main/ets/common/api/ApiService';
 
 export default function localUnitTest() {
-  describe('localUnitTest', () => {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(() => {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
+  describe('ApiService', () => {
+    it('token管理_设置后读取一致', 0, () => {
+      setToken('test-token-123');
+      expect(getStoredToken()).assertEqual('test-token-123');
     });
-    beforeEach(() => {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
+
+    it('token管理_清除后为空', 0, () => {
+      setToken('test-token-123');
+      clearToken();
+      expect(getStoredToken()).assertEqual('');
     });
-    afterEach(() => {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    });
-    afterAll(() => {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    });
-    it('assertContain', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let a = 'abc';
-      let b = 'b';
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
+
+    it('token管理_覆盖更新', 0, () => {
+      setToken('old-token');
+      setToken('new-token');
+      expect(getStoredToken()).assertEqual('new-token');
+      clearToken();
     });
   });
 }

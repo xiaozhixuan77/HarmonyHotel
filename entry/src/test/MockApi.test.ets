@@ -127,7 +127,9 @@ export default function mockApiTest(): void {
 
       it('空调-无效cmd参数', 0, async (done: Function) => {
         const res = await mockClickAirBtn('invalid', 1, 103136);
-        expect(res.code).assertEqual(0);
+        expect(res.code).assertEqual(1);
+        expect(res.msg).assertContain('参数');
+        expect(res.success).assertEqual(false);
         done();
       });
     });

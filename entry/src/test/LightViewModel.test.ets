@@ -151,5 +151,43 @@ export default function lightViewModelTest(): void {
       vm.toggleLight(1);
       expect(vm.mainSwitchOn).assertFalse();
     });
+
+    it('toggleLight_索引越界_不报错且不改变状态', 0, () => {
+      const vm = new LightViewModel();
+      vm.lights = [makeLight('1', '廊灯', '走廊', 103135, true)];
+      vm.toggleLight(-1);
+      vm.toggleLight(999);
+      expect(vm.lights[0].on).assertTrue();
+    });
+
+    it('setSceneMode_睡眠模式_所有灯关闭', 0, async (done: Function) => {
+      const vm = new LightViewModel();
+      vm.lights = [
+        makeLight('1', '廊灯', '走廊', 103135, true),
+        makeLight('60', '洗漱间', '房间', 103125, true)
+      ];
+      vm.setLightModeApi = (): Promise<ApiResponse<string>> => Promise.resolve({ code: 0, msg: '', data: '', success: true } as ApiResponse<string>);
+      await vm.setSceneMode(103123, '睡眠模式');
+      expect(vm.lights.every((l: Light) => !l.on)).assertTrue();
+      done();
+    });
+
+    it('setSceneMode_非睡眠非全关模式_所有灯开启', 0, async (done: Function) => {
+      const vm = new LightViewModel();
+      vm.lights = [makeLight('1', '廊灯', '走廊', 103135, false)];
+      vm.setLightModeApi = (): Promise<ApiResponse<string>> => Promise.resolve({ code: 0, msg: '', data: '', success: true } as ApiResponse<string>);
+      await vm.setSceneMode(103119, '明亮模式');
+      expect(vm.lights[0].on).assertTrue();
+      done();
+    });
+
+    it('setSceneMode_全关模式_所有灯关闭', 0, async (done: Function) => {
+      const vm = new LightViewModel();
+      vm.lights = [makeLight('1', '廊灯', '走廊', 103135, true)];
+      vm.setLightModeApi = (): Promise<ApiResponse<string>> => Promise.resolve({ code: 0, msg: '', data: '', success: true } as ApiResponse<string>);
+      await vm.setSceneMode(103004, '总关模式');
+      expect(vm.lights[0].on).assertFalse();
+      done();
+    });
   });
 }
