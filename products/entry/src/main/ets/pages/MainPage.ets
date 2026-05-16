@@ -4,10 +4,10 @@ import { PhoneMainLayout } from '../product/phone/MainLayout';
 import { TabletMainLayout } from '../product/tablet/MainLayout';
 import { FoldableMainLayout } from '../product/foldable/MainLayout';
 
-@Entry
 @ComponentV2
-struct MainPage {
+export struct MainPage {
   @Local currentBreakpoint: string = 'sm';
+  @Consumer('pageStack') pageStack: NavPathStack = new NavPathStack();
   private windowChangeCallback?: (size: window.Size) => void;
 
   async aboutToAppear(): Promise<void> {
@@ -37,17 +37,24 @@ struct MainPage {
     }
   }
 
+  private handleLogout(): void {
+    this.pageStack.replacePath({ name: 'LoginPage' });
+  }
+
   build() {
-    Stack() {
-      if (this.currentBreakpoint === 'sm') {
-        PhoneMainLayout()
-      } else if (this.currentBreakpoint === 'md') {
-        TabletMainLayout()
-      } else {
-        FoldableMainLayout()
+    NavDestination() {
+      Stack() {
+        if (this.currentBreakpoint === 'sm') {
+          PhoneMainLayout({ onLogout: () => this.handleLogout() })
+        } else if (this.currentBreakpoint === 'md') {
+          TabletMainLayout({ onLogout: () => this.handleLogout() })
+        } else {
+          FoldableMainLayout({ onLogout: () => this.handleLogout() })
+        }
       }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
+    .hideTitleBar(true)
   }
 }

@@ -6,6 +6,7 @@ import { TAB_CONFIGS, TabItemConfig } from '@ohos/common';
 
 @ComponentV2
 export struct TabletMainLayout {
+  @Param onLogout: () => void = () => {};
   @Local currentTab: number = 0;
 
   @Builder
@@ -53,7 +54,7 @@ export struct TabletMainLayout {
         } else if (this.currentTab === 2) {
           CurtainPage()
         } else if (this.currentTab === 3) {
-          ServicePage()
+          ServicePage({ onLogout: this.onLogout })
         }
       }
       .layoutWeight(1)

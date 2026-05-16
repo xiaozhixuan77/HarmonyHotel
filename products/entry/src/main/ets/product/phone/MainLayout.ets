@@ -5,6 +5,7 @@ import { ServicePage } from '@ohos/service';
 
 @ComponentV2
 export struct PhoneMainLayout {
+  @Param onLogout: () => void = () => {};
   @Local currentTab: number = 0;
 
   @Builder
@@ -150,7 +151,7 @@ export struct PhoneMainLayout {
         }
 
         TabContent() {
-          ServicePage()
+          ServicePage({ onLogout: this.onLogout })
         }
       }
       .barHeight(0)

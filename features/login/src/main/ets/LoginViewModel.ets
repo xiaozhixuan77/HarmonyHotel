@@ -57,7 +57,7 @@ export class LoginViewModel {
         }
         return true;
       } else {
-        this.errorMsg = res.msg || '客房号或用户名错误';
+          this.errorMsg = res.msg || '客房号或用户名错误';
         return false;
       }
     } catch (err) {

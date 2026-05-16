@@ -1,5 +1,5 @@
 import { common } from '@kit.AbilityKit';
-import { router, promptAction } from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI';
 import { ServiceViewModel } from './ServiceViewModel';
 import { DNDToggle } from './components/DNDToggle';
 import { CleanRoom } from './components/CleanRoom';
@@ -7,6 +7,7 @@ import { SOSButton } from './components/SOSButton';
 
 @ComponentV2
 export struct ServicePage {
+  @Param onLogout: () => void = () => {};
   @Local viewModel: ServiceViewModel = new ServiceViewModel();
 
   async aboutToAppear(): Promise<void> {
@@ -25,7 +26,7 @@ export struct ServicePage {
       if (data.index === 1) {
         const context: common.Context = getContext(this) as common.Context;
         await this.viewModel.logout(context);
-        router.replaceUrl({ url: 'login/LoginPage' });
+        this.onLogout?.();
       }
     }).catch(() => {});
   }

@@ -1,10 +1,10 @@
 import { common } from '@kit.AbilityKit';
-import { promptAction, router } from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI';
 import { LoginViewModel } from './LoginViewModel';
 
-@Entry
 @ComponentV2
 export struct LoginPage {
+  @Param onLoginSuccess: () => void = () => {};
   @Local viewModel: LoginViewModel = new LoginViewModel();
 
   async aboutToAppear(): Promise<void> {
@@ -12,7 +12,7 @@ export struct LoginPage {
     await this.viewModel.loadSavedInfo(context);
     const autoLogin: boolean = await this.viewModel.checkAutoLogin(context);
     if (autoLogin) {
-      router.replaceUrl({ url: 'pages/MainPage' });
+      this.onLoginSuccess();
     }
   }
 
@@ -121,7 +121,7 @@ export struct LoginPage {
               const context: common.Context = getContext(this) as common.Context;
               const success: boolean = await this.viewModel.login(context);
               if (success) {
-                router.replaceUrl({ url: 'pages/MainPage' });
+                this.onLoginSuccess();
               } else if (this.viewModel.errorMsg.length > 0) {
                 promptAction.showToast({
                   message: this.viewModel.errorMsg,
