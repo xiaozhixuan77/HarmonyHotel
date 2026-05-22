@@ -2,7 +2,7 @@
   "name": "@ohos/home",
   "version": "1.0.0",
   "description": "Home feature module",
-  "main": "src/main/ets/Index.ets",
+  "main": "Index.ets",
   "author": "",
   "license": "",
   "dependencies": {

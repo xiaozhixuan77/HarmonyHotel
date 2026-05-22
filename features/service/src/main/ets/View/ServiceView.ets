@@ -1,6 +1,6 @@
 import { common } from '@kit.AbilityKit';
 import { promptAction } from '@kit.ArkUI';
-import { ServiceViewModel } from './ServiceViewModel';
+import { ServiceViewModel } from '../ViewModel/ServiceViewModel';
 import { DNDToggle } from './components/DNDToggle';
 import { CleanRoom } from './components/CleanRoom';
 import { SOSButton } from './components/SOSButton';

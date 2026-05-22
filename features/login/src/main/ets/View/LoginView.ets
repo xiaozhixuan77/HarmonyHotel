@@ -1,9 +1,9 @@
 import { common } from '@kit.AbilityKit';
 import { promptAction } from '@kit.ArkUI';
-import { LoginViewModel } from './LoginViewModel';
+import { LoginViewModel } from '../ViewModel/LoginViewModel';
 
 @ComponentV2
-export struct LoginPage {
+export struct LoginView {
   @Param onLoginSuccess: () => void = () => {};
   @Local viewModel: LoginViewModel = new LoginViewModel();
 

@@ -51,8 +51,8 @@
       "srcPath": "./features/service"
     },
     {
-      "name": "entry",
-      "srcPath": "./products/entry",
+      "name": "default",
+      "srcPath": "./products/default",
       "targets": [
         {
           "name": "default",

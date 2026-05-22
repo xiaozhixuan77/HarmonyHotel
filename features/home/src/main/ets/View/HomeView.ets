@@ -1,4 +1,4 @@
-import { HomeViewModel } from './HomeViewModel';
+import { HomeViewModel } from '../ViewModel/HomeViewModel';
 import { AirconControl } from './components/AirconControl';
 import { SceneModePanel } from './components/SceneModePanel';
 import { ServiceStatus } from './components/ServiceStatus';

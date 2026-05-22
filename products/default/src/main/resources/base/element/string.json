@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "tab_home",
+      "value": "首页"
+    },
+    {
+      "name": "tab_light",
+      "value": "灯光"
+    },
+    {
+      "name": "tab_curtain",
+      "value": "窗帘"
+    },
+    {
+      "name": "tab_service",
+      "value": "服务"
+    }
+  ]
+}

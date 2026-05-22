@@ -1,4 +1,4 @@
-import { LightViewModel } from './LightViewModel';
+import { LightViewModel } from '../ViewModel/LightViewModel';
 import { LightMainSwitch } from './components/LightMainSwitch';
 import { LightSceneMode } from './components/LightSceneMode';
 import { IndependentLight } from './components/IndependentLight';

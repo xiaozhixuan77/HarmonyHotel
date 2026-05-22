@@ -1,4 +1,4 @@
-import { CurtainViewModel } from './CurtainViewModel';
+import { CurtainViewModel } from '../ViewModel/CurtainViewModel';
 import { CurtainAllControl } from './components/CurtainAllControl';
 import { CurtainSingle } from './components/CurtainSingle';
 import { WindowScreening } from './components/WindowScreening';

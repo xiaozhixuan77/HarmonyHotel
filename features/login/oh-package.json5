@@ -2,7 +2,7 @@
   "name": "@ohos/login",
   "version": "1.0.0",
   "description": "Login feature module",
-  "main": "src/main/ets/Index.ets",
+  "main": "Index.ets",
   "author": "",
   "license": "",
   "dependencies": {
