@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
-import { debounce } from '@ohos/common';
+import { debounce } from '@ohos/utils';
 
 export default function commonUtilsTest(): void {
   describe('CommonUtils', () => {

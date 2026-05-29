@@ -2,7 +2,7 @@ import { HomePage } from '@ohos/home';
 import { LightPage } from '@ohos/light';
 import { CurtainPage } from '@ohos/curtain';
 import { ServicePage } from '@ohos/service';
-import { TAB_CONFIGS, TabItemConfig } from '@ohos/common';
+import { TAB_CONFIGS, TabItemConfig } from '@ohos/uicomponents';
 
 @ComponentV2
 export struct FoldableMainLayout {

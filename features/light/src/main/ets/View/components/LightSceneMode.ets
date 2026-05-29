@@ -1,4 +1,4 @@
-import { LightMode } from '@ohos/common';
+import { LightMode } from '@ohos/datastore';
 
 interface SceneItem {
   label: ResourceStr;

@@ -1,8 +1,6 @@
-import { ApiResponse } from '@ohos/common';
-import { RoomState, Service } from '@ohos/common';
-import { mockGetRoomState } from '@ohos/common';
-import { deleteToken, clearLoginInfo } from '@ohos/common';
-import { clearToken } from '@ohos/common';
+import { ApiResponse, mockGetRoomState, clearToken } from '@ohos/network';
+import { RoomState, Service } from '@ohos/datastore';
+import { deleteToken, clearLoginInfo } from '@ohos/datastore';
 import { common } from '@kit.AbilityKit';
 
 function cloneService(s: Service, active: boolean): Service {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@ohos/hypium';
-import { setToken, getStoredToken, clearToken } from '@ohos/common';
+import { setToken, getStoredToken, clearToken } from '@ohos/network';
 
 export default function localUnitTest() {
   describe('ApiService', () => {

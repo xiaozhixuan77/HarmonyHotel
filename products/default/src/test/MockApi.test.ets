@@ -1,8 +1,5 @@
 import { describe, it, expect } from '@ohos/hypium';
-import { mockLogin } from '@ohos/common';
-import { mockGetRoomState } from '@ohos/common';
-import { mockSetLightMode } from '@ohos/common';
-import { mockClickAirBtn } from '@ohos/common';
+import { mockLogin, mockGetRoomState, mockSetLightMode, mockClickAirBtn } from '@ohos/network';
 
 export default function mockApiTest(): void {
   describe('MockApi', () => {

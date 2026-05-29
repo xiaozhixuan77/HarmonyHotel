@@ -1,7 +1,7 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { CurtainViewModel } from '@ohos/curtain';
-import { ApiResponse } from '@ohos/common';
-import { RoomState, Curtain, CurtainState } from '@ohos/common';
+import { ApiResponse } from '@ohos/network';
+import { RoomState, Curtain, CurtainState } from '@ohos/datastore';
 
 function makeCurtain(sequence: number, cpadd: string, name: string, location: string, id: number, state?: CurtainState): Curtain {
   return { sequence, cpadd, name, location, id, state };

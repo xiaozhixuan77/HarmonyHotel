@@ -1,0 +1,9 @@
+{
+  "name": "@ohos/datastore",
+  "version": "1.0.0",
+  "description": "Data models and persistence utilities",
+  "main": "Index.ets",
+  "author": "",
+  "license": "",
+  "dependencies": {}
+}

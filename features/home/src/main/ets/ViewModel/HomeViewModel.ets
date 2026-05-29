@@ -1,8 +1,5 @@
-import { ApiResponse } from '@ohos/common';
-import { RoomState } from '@ohos/common';
-import { mockGetRoomState } from '@ohos/common';
-import { mockClickAirBtn } from '@ohos/common';
-import { mockSetLightMode } from '@ohos/common';
+import { ApiResponse, mockGetRoomState, mockClickAirBtn, mockSetLightMode } from '@ohos/network';
+import { RoomState } from '@ohos/datastore';
 
 const AC_ID = 103136;
 const DEBOUNCE_DELAY = 500;

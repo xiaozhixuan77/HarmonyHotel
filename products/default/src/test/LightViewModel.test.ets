@@ -1,7 +1,7 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { LightViewModel } from '@ohos/light';
-import { ApiResponse } from '@ohos/common';
-import { RoomState, Light, LightMode } from '@ohos/common';
+import { ApiResponse } from '@ohos/network';
+import { RoomState, Light, LightMode } from '@ohos/datastore';
 
 function makeLight(cpadd: string, name: string, location: string, id: number, on?: boolean): Light {
   return { cpadd, name, location, id, on };

@@ -1,7 +1,7 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { LoginViewModel } from '@ohos/login';
-import { ApiResponse } from '@ohos/common';
-import { LoginInfo, deleteToken, clearLoginInfo } from '@ohos/common';
+import { ApiResponse } from '@ohos/network';
+import { LoginInfo, deleteToken, clearLoginInfo } from '@ohos/datastore';
 import { common } from '@kit.AbilityKit';
 
 export default function loginViewModelTest(): void {

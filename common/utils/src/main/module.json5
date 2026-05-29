@@ -1,0 +1,12 @@
+{
+  "module": {
+    "name": "utils",
+    "type": "har",
+    "description": "General utility functions",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ]
+  }
+}

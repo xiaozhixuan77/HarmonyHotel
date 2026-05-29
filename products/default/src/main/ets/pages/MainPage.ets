@@ -1,5 +1,5 @@
 import { window } from '@kit.ArkUI';
-import { getBreakpoint } from '@ohos/common';
+import { getBreakpoint } from '@ohos/utils';
 import { PhoneMainLayout } from '../product/phone/MainLayout';
 import { TabletMainLayout } from '../product/tablet/MainLayout';
 import { FoldableMainLayout } from '../product/foldable/MainLayout';

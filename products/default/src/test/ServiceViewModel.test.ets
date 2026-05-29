@@ -1,9 +1,8 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { common } from '@kit.AbilityKit';
 import { ServiceViewModel } from '@ohos/service';
-import { ApiResponse } from '@ohos/common';
-import { RoomState, Service, StateFlags } from '@ohos/common';
-import { setToken, getStoredToken, clearToken } from '@ohos/common';
+import { ApiResponse, setToken, getStoredToken, clearToken } from '@ohos/network';
+import { RoomState, Service, StateFlags } from '@ohos/datastore';
 
 function makeService(code: string, name: string, id: number, active?: boolean): Service {
   return { code, name, id, active };

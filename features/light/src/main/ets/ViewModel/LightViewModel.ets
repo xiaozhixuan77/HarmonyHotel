@@ -1,7 +1,5 @@
-import { ApiResponse } from '@ohos/common';
-import { RoomState, Light, LightMode } from '@ohos/common';
-import { mockGetRoomState } from '@ohos/common';
-import { mockSetLightMode } from '@ohos/common';
+import { ApiResponse, mockGetRoomState, mockSetLightMode } from '@ohos/network';
+import { RoomState, Light, LightMode } from '@ohos/datastore';
 
 function cloneLight(light: Light, on: boolean): Light {
   return {

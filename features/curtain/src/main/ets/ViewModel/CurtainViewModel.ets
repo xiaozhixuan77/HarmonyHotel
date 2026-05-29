@@ -1,6 +1,5 @@
-import { ApiResponse } from '@ohos/common';
-import { RoomState, Curtain, CurtainState } from '@ohos/common';
-import { mockGetRoomState } from '@ohos/common';
+import { ApiResponse, mockGetRoomState } from '@ohos/network';
+import { RoomState, Curtain, CurtainState } from '@ohos/datastore';
 
 function cloneCurtain(c: Curtain, state: CurtainState): Curtain {
   return {

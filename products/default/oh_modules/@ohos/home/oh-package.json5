@@ -1,0 +1,12 @@
+{
+  "name": "@ohos/home",
+  "version": "1.0.0",
+  "description": "Home feature module",
+  "main": "Index.ets",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@ohos/datastore": "file:../../common/datastore",
+    "@ohos/network": "file:../../common/network"
+  }
+}

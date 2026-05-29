@@ -1,4 +1,4 @@
-import { Light } from '@ohos/common';
+import { Light } from '@ohos/datastore';
 
 @ComponentV2
 export struct IndependentLight {

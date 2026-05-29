@@ -1,7 +1,7 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { HomeViewModel } from '@ohos/home';
-import { ApiResponse } from '@ohos/common';
-import { RoomState, AirConditioner } from '@ohos/common';
+import { ApiResponse } from '@ohos/network';
+import { RoomState, AirConditioner } from '@ohos/datastore';
 
 function createMockRoomState(): ApiResponse<RoomState> {
   const mockAc: AirConditioner = { code: '', cpadd: '', name: 'kt1', location: '', id: 103136, settingTemp: 22, currentTemp: 19, mode: 0, speed: 1, open: 1 };

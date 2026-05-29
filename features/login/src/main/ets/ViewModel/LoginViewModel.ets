@@ -1,6 +1,5 @@
 import { common } from '@kit.AbilityKit';
-import { ApiResponse } from '@ohos/common';
-import { mockLogin } from '@ohos/common';
+import { ApiResponse, mockLogin, setToken } from '@ohos/network';
 import {
   saveToken,
   getToken,
@@ -8,8 +7,7 @@ import {
   getLoginInfo,
   clearLoginInfo,
   LoginInfo
-} from '@ohos/common';
-import { setToken } from '@ohos/common';
+} from '@ohos/datastore';
 
 @ObservedV2
 export class LoginViewModel {

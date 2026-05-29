@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@ohos/hypium';
-import { getBreakpoint } from '@ohos/common';
+import { getBreakpoint } from '@ohos/utils';
 
 export default function breakpointUtilTest(): void {
   describe('BreakpointUtil', () => {

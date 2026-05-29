@@ -1,0 +1,12 @@
+{
+  "module": {
+    "name": "curtain",
+    "type": "har",
+    "description": "Curtain feature module",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+  }
+}

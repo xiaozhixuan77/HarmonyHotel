@@ -1,4 +1,4 @@
-import { CurtainState } from '@ohos/common';
+import { CurtainState } from '@ohos/datastore';
 
 @ComponentV2
 export struct CurtainSingle {

@@ -2,7 +2,7 @@ import { CurtainViewModel } from '../ViewModel/CurtainViewModel';
 import { CurtainAllControl } from './components/CurtainAllControl';
 import { CurtainSingle } from './components/CurtainSingle';
 import { WindowScreening } from './components/WindowScreening';
-import { CurtainState } from '@ohos/common';
+import { CurtainState } from '@ohos/datastore';
 
 @ComponentV2
 export struct CurtainPage {
