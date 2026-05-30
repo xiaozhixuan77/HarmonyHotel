@@ -1,5 +1,5 @@
 import { ApiResponse } from './ApiResponse';
-import { RoomState } from '@ohos/datastore';
+import { RoomState, Light } from '@ohos/datastore';
 
 const MOCK_ROOM_STATE: RoomState = {
   room_number: '2002',
@@ -38,15 +38,15 @@ const MOCK_ROOM_STATE: RoomState = {
       }
     ],
     lights: [
-      { cpadd: '1', name: '廊灯', location: '走廊', id: 103135 },
-      { cpadd: '60', name: '洗漱间', location: '房间', id: 103125 },
-      { cpadd: '23', name: '衣柜灯', location: '房间', id: 103128 },
-      { cpadd: '15', name: '落地灯', location: '房间', id: 103129 },
-      { cpadd: '14', name: '吧灯', location: '房间', id: 103130 },
-      { cpadd: '13', name: '书桌灯', location: '房间', id: 103131 },
-      { cpadd: '11', name: '左阅读灯', location: '房间', id: 103133 },
-      { cpadd: '12', name: '右阅读灯', location: '房间', id: 103132 },
-      { cpadd: '9', name: '排风扇', location: '房间', id: 103134 }
+      new Light('1', '廊灯', '走廊', 103135, true),
+      new Light('60', '洗漱间', '房间', 103125, true),
+      new Light('23', '衣柜灯', '房间', 103128, true),
+      new Light('15', '落地灯', '房间', 103129, true),
+      new Light('14', '吧灯', '房间', 103130, true),
+      new Light('13', '书桌灯', '房间', 103131, true),
+      new Light('11', '左阅读灯', '房间', 103133, true),
+      new Light('12', '右阅读灯', '房间', 103132, true),
+      new Light('9', '排风扇', '房间', 103134, true)
     ],
     lightModes: [
       { cpadd: '1', name: '明亮模式', extra_name: null, location: '房间', id: 103119 },

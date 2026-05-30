@@ -11,12 +11,21 @@ export interface AirConditioner {
   open?: number;
 }
 
-export interface Light {
-  cpadd: string;
-  name: string;
-  location: string;
-  id: number;
-  on?: boolean;
+@ObservedV2
+export class Light {
+  @Trace cpadd: string;
+  @Trace name: string;
+  @Trace location: string;
+  @Trace id: number;
+  @Trace on: boolean;
+
+  constructor(cpadd: string, name: string, location: string, id: number, on: boolean) {
+    this.cpadd = cpadd;
+    this.name = name;
+    this.location = location;
+    this.id = id;
+    this.on = on;
+  }
 }
 
 export interface LightMode {
