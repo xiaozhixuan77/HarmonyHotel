@@ -1,5 +1,5 @@
 import { ApiResponse, mockGetRoomState, mockClickAirBtn, mockSetLightMode } from '@ohos/network';
-import { RoomState, RoomServiceState, roomServiceState } from '@ohos/datastore';
+import { RoomState, RoomServiceState, roomServiceState, Light } from '@ohos/datastore';
 
 const AC_ID = 103136;
 const DEBOUNCE_DELAY = 500;
@@ -23,7 +23,6 @@ export class HomeViewModel {
   @Trace acSpeed: number = 1;
   @Trace acPower: boolean = true;
   @Trace isLoading: boolean = false;
-  @Trace currentSceneMode: string = '';
   serviceState: RoomServiceState = roomServiceState;
 
   getRoomStateApi: (roomNo: string) => Promise<ApiResponse<RoomState>> = mockGetRoomState;
@@ -50,6 +49,10 @@ export class HomeViewModel {
       }
       this.serviceState.dndOn = data.state.wurao === '1';
       this.serviceState.cleanRequested = data.state.qingli === '1';
+      if (this.serviceState.lights.length === 0) {
+        this.serviceState.lightModes = data.hardware.lightModes;
+        this.serviceState.lights = data.hardware.lights.map((l: Light) => new Light(l.cpadd, l.name, l.location, l.id, true));
+      }
       this.loaded = true;
     }
     this.isLoading = false;
@@ -80,20 +83,16 @@ export class HomeViewModel {
   }
 
   async setSceneMode(hardwareId: number, modeName: string): Promise<void> {
-    if (this.currentSceneMode === modeName) {
-      this.currentSceneMode = '';
-      return;
-    }
     const res: ApiResponse<string> = await this.setLightModeApi(hardwareId);
     if (res.success) {
-      this.currentSceneMode = modeName;
+      this.serviceState.setSceneMode(hardwareId, modeName);
     }
   }
 
   async goodNightMode(): Promise<void> {
     const res: ApiResponse<string> = await this.setLightModeApi(103004);
     if (res.success) {
-      this.currentSceneMode = '晚安';
+      this.serviceState.setSceneMode(103004, '晚安');
     }
   }
 

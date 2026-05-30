@@ -62,7 +62,7 @@ export struct HomePage {
             .margin({ bottom: $r('app.float.spacing_md') })
 
           SceneModePanel({
-            currentMode: this.viewModel.currentSceneMode,
+            currentMode: this.viewModel.serviceState.sceneMode,
             onModeSelect: (hardwareId: number, modeName: string): void => {
               this.viewModel.setSceneMode(hardwareId, modeName);
             }

@@ -1,9 +1,5 @@
 import { ApiResponse, mockGetRoomState, mockSetLightMode } from '@ohos/network';
-import { RoomState, Light, LightMode } from '@ohos/datastore';
-
-function cloneLight(light: Light, on: boolean): Light {
-  return new Light(light.cpadd, light.name, light.location, light.id, on);
-}
+import { RoomState, Light, LightMode, RoomServiceState, roomServiceState } from '@ohos/datastore';
 
 let instance: LightViewModel | null = null;
 
@@ -16,13 +12,11 @@ export function getLightViewModel(): LightViewModel {
 
 @ObservedV2
 export class LightViewModel {
-  @Trace lights: Light[] = [];
-  @Trace lightModes: LightMode[] = [];
   @Trace isLoading: boolean = false;
-  @Trace currentSceneMode: string = '';
+  store: RoomServiceState = roomServiceState;
 
   get mainSwitchOn(): boolean {
-    return this.lights.length > 0 && this.lights.every((l: Light) => l.on);
+    return this.store.lights.length > 0 && this.store.lights.every((l: Light) => l.on);
   }
 
   getRoomStateApi: (roomNo: string) => Promise<ApiResponse<RoomState>> = mockGetRoomState;
@@ -35,8 +29,8 @@ export class LightViewModel {
     this.isLoading = true;
     const res: ApiResponse<RoomState> = await this.getRoomStateApi('2002');
     if (res.success && res.data) {
-      this.lights = res.data.hardware.lights.map((l: Light) => new Light(l.cpadd, l.name, l.location, l.id, true));
-      this.lightModes = res.data.hardware.lightModes;
+      this.store.lightModes = res.data.hardware.lightModes;
+      this.store.lights = res.data.hardware.lights.map((l: Light) => new Light(l.cpadd, l.name, l.location, l.id, true));
       this.loaded = true;
     }
     this.isLoading = false;
@@ -46,24 +40,18 @@ export class LightViewModel {
     const hardwareId: number = on ? 103001 : 103004;
     const res: ApiResponse<string> = await this.setLightModeApi(hardwareId);
     if (res.success) {
-      this.lights = this.lights.map((l: Light) => cloneLight(l, on));
-      this.currentSceneMode = '';
+      this.store.setAllLights(on);
     }
   }
 
   async setSceneMode(modeId: number, modeName: string): Promise<void> {
     const res: ApiResponse<string> = await this.setLightModeApi(modeId);
     if (res.success) {
-      this.currentSceneMode = modeName;
-      const allOn: boolean = modeId !== 103004 && modeId !== 103123;
-      this.lights = this.lights.map((l: Light) => cloneLight(l, allOn));
+      this.store.setSceneMode(modeId, modeName);
     }
   }
 
   toggleLight(index: number): void {
-    if (index < 0 || index >= this.lights.length) {
-      return;
-    }
-    this.lights[index].on = !this.lights[index].on;
+    this.store.toggleLight(index);
   }
 }

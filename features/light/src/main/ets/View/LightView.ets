@@ -31,8 +31,8 @@ export struct LightPage {
             .margin({ bottom: $r('app.float.spacing_sm') })
 
           LightSceneMode({
-            currentMode: this.viewModel.currentSceneMode,
-            modes: this.viewModel.lightModes,
+            currentMode: this.viewModel.store.sceneMode,
+            modes: this.viewModel.store.lightModes,
             onModeSelect: (hardwareId: number, modeName: string): void => {
               this.viewModel.setSceneMode(hardwareId, modeName);
             }
@@ -40,7 +40,7 @@ export struct LightPage {
             .margin({ bottom: $r('app.float.spacing_sm') })
 
           IndependentLight({
-            lights: this.viewModel.lights,
+            lights: this.viewModel.store.lights,
             onToggle: (index: number): void => {
               this.viewModel.toggleLight(index);
             }
