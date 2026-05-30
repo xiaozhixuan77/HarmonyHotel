@@ -12,6 +12,15 @@ function cloneCurtain(c: Curtain, state: CurtainState): Curtain {
   };
 }
 
+let instance: CurtainViewModel | null = null;
+
+export function getCurtainViewModel(): CurtainViewModel {
+  if (!instance) {
+    instance = new CurtainViewModel();
+  }
+  return instance;
+}
+
 @ObservedV2
 export class CurtainViewModel {
   @Trace curtains: Curtain[] = [];
@@ -19,11 +28,15 @@ export class CurtainViewModel {
 
   getRoomStateApi: (roomNo: string) => Promise<ApiResponse<RoomState>> = mockGetRoomState;
 
+  private loaded: boolean = false;
+
   async loadCurtains(): Promise<void> {
+    if (this.loaded) return;
     this.isLoading = true;
     const res: ApiResponse<RoomState> = await this.getRoomStateApi('2002');
     if (res.success && res.data) {
       this.curtains = res.data.hardware.curtains.map((c: Curtain) => cloneCurtain(c, c.state || 'close'));
+      this.loaded = true;
     }
     this.isLoading = false;
   }

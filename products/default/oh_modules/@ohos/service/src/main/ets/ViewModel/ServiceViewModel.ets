@@ -12,6 +12,15 @@ function cloneService(s: Service, active: boolean): Service {
   };
 }
 
+let instance: ServiceViewModel | null = null;
+
+export function getServiceViewModel(): ServiceViewModel {
+  if (!instance) {
+    instance = new ServiceViewModel();
+  }
+  return instance;
+}
+
 @ObservedV2
 export class ServiceViewModel {
   @Trace services: Service[] = [];
@@ -22,13 +31,17 @@ export class ServiceViewModel {
 
   getRoomStateApi: (roomNo: string) => Promise<ApiResponse<RoomState>> = mockGetRoomState;
 
+  private loaded: boolean = false;
+
   async loadServices(): Promise<void> {
+    if (this.loaded) return;
     this.isLoading = true;
     const res: ApiResponse<RoomState> = await this.getRoomStateApi('2002');
     if (res.success && res.data) {
       this.services = res.data.hardware.services.map((s: Service) => cloneService(s, false));
       this.dndOn = res.data.state.wurao === '1';
       this.cleanRequested = res.data.state.qingli === '1';
+      this.loaded = true;
     }
     this.isLoading = false;
   }

@@ -4,6 +4,15 @@ import { RoomState } from '@ohos/datastore';
 const AC_ID = 103136;
 const DEBOUNCE_DELAY = 500;
 
+let instance: HomeViewModel | null = null;
+
+export function getHomeViewModel(): HomeViewModel {
+  if (!instance) {
+    instance = new HomeViewModel();
+  }
+  return instance;
+}
+
 @ObservedV2
 export class HomeViewModel {
   @Trace roomNumber: string = '2002';
@@ -22,9 +31,11 @@ export class HomeViewModel {
   clickAirBtnApi: (cmd: string, value: number, airId: number) => Promise<ApiResponse<string>> = mockClickAirBtn;
   setLightModeApi: (hardwareId: number) => Promise<ApiResponse<string>> = mockSetLightMode;
 
+  private loaded: boolean = false;
   private tempDebounceTimer: number | undefined;
 
   async loadRoomState(): Promise<void> {
+    if (this.loaded) return;
     this.isLoading = true;
     const res: ApiResponse<RoomState> = await this.getRoomStateApi(this.roomNumber);
     if (res.success && res.data) {
@@ -38,6 +49,7 @@ export class HomeViewModel {
         this.acSpeed = ac.speed || 1;
         this.acPower = (ac.open || 0) === 1;
       }
+      this.loaded = true;
     }
     this.isLoading = false;
   }

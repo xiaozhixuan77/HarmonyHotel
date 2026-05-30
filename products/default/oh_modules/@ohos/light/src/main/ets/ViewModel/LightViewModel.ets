@@ -5,6 +5,15 @@ function cloneLight(light: Light, on: boolean): Light {
   return new Light(light.cpadd, light.name, light.location, light.id, on);
 }
 
+let instance: LightViewModel | null = null;
+
+export function getLightViewModel(): LightViewModel {
+  if (!instance) {
+    instance = new LightViewModel();
+  }
+  return instance;
+}
+
 @ObservedV2
 export class LightViewModel {
   @Trace lights: Light[] = [];
@@ -19,12 +28,16 @@ export class LightViewModel {
   getRoomStateApi: (roomNo: string) => Promise<ApiResponse<RoomState>> = mockGetRoomState;
   setLightModeApi: (hardwareId: number) => Promise<ApiResponse<string>> = mockSetLightMode;
 
+  private loaded: boolean = false;
+
   async loadLights(): Promise<void> {
+    if (this.loaded) return;
     this.isLoading = true;
     const res: ApiResponse<RoomState> = await this.getRoomStateApi('2002');
     if (res.success && res.data) {
       this.lights = res.data.hardware.lights.map((l: Light) => new Light(l.cpadd, l.name, l.location, l.id, true));
       this.lightModes = res.data.hardware.lightModes;
+      this.loaded = true;
     }
     this.isLoading = false;
   }

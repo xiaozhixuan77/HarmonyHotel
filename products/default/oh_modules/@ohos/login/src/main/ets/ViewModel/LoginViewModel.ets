@@ -15,6 +15,7 @@ export class LoginViewModel {
   @Trace firstName: string = '';
   @Trace rememberMe: boolean = false;
   @Trace isLoading: boolean = false;
+  @Trace navigating: boolean = false;
   @Trace errorMsg: string = '';
   @Trace isLoggedIn: boolean = false;
   @Trace token: string = '';

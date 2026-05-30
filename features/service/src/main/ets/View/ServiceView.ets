@@ -1,6 +1,6 @@
 import { common } from '@kit.AbilityKit';
 import { promptAction } from '@kit.ArkUI';
-import { ServiceViewModel } from '../ViewModel/ServiceViewModel';
+import { ServiceViewModel, getServiceViewModel } from '../ViewModel/ServiceViewModel';
 import { DNDToggle } from './components/DNDToggle';
 import { CleanRoom } from './components/CleanRoom';
 import { SOSButton } from './components/SOSButton';
@@ -8,10 +8,10 @@ import { SOSButton } from './components/SOSButton';
 @ComponentV2
 export struct ServicePage {
   @Param onLogout: () => void = () => {};
-  @Local viewModel: ServiceViewModel = new ServiceViewModel();
+  @Local viewModel: ServiceViewModel = getServiceViewModel();
 
-  async aboutToAppear(): Promise<void> {
-    await this.viewModel.loadServices();
+  aboutToAppear(): void {
+    this.viewModel.loadServices();
   }
 
   private showLogoutConfirm(): void {

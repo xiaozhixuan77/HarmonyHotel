@@ -7,13 +7,14 @@ export struct LoginView {
   @Param onLoginSuccess: () => void = () => {};
   @Local viewModel: LoginViewModel = new LoginViewModel();
 
-  async aboutToAppear(): Promise<void> {
+  aboutToAppear(): void {
     const context: common.Context = getContext(this) as common.Context;
-    await this.viewModel.loadSavedInfo(context);
-    const autoLogin: boolean = await this.viewModel.checkAutoLogin(context);
-    if (autoLogin) {
-      this.onLoginSuccess();
-    }
+    this.viewModel.loadSavedInfo(context);
+    this.viewModel.checkAutoLogin(context).then((autoLogin: boolean) => {
+      if (autoLogin) {
+        this.onLoginSuccess();
+      }
+    });
   }
 
   build() {
@@ -121,6 +122,7 @@ export struct LoginView {
               const context: common.Context = getContext(this) as common.Context;
               const success: boolean = await this.viewModel.login(context);
               if (success) {
+                this.viewModel.navigating = true;
                 this.onLoginSuccess();
               } else if (this.viewModel.errorMsg.length > 0) {
                 promptAction.showToast({
@@ -143,6 +145,8 @@ export struct LoginView {
         .borderRadius($r('app.float.radius_card'))
         .backgroundColor($r('app.color.card_bg'))
         .backdropBlur(10)
+        .opacity(this.viewModel.navigating ? 0 : 1)
+        .animation({ duration: 150, curve: Curve.EaseOut })
         .border({
           width: 1,
           color: 'rgba(255, 255, 255, 0.12)'

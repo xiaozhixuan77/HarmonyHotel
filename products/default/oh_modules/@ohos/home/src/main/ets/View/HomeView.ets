@@ -1,14 +1,14 @@
-import { HomeViewModel } from '../ViewModel/HomeViewModel';
+import { HomeViewModel, getHomeViewModel } from '../ViewModel/HomeViewModel';
 import { AirconControl } from './components/AirconControl';
 import { SceneModePanel } from './components/SceneModePanel';
 import { ServiceStatus } from './components/ServiceStatus';
 import { promptAction } from '@kit.ArkUI';
 @ComponentV2
 export struct HomePage {
-  @Local viewModel: HomeViewModel = new HomeViewModel();
+  @Local viewModel: HomeViewModel = getHomeViewModel();
 
-  async aboutToAppear(): Promise<void> {
-    await this.viewModel.loadRoomState();
+  aboutToAppear(): void {
+    this.viewModel.loadRoomState();
   }
 
   build() {

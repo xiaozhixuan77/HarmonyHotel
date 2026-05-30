@@ -11,7 +11,7 @@ export struct LoginPage {
         HarLoginPage({
           onLoginSuccess: () => {
             this.showTabBar = true;
-            this.pageStack.pushPath({ name: 'HomeTab' }, { animated: true });
+            this.pageStack.pushPath({ name: 'HomeTab' }, { animated: false });
           }
         })
       }

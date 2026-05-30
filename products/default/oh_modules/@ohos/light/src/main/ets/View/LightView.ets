@@ -1,14 +1,14 @@
-import { LightViewModel } from '../ViewModel/LightViewModel';
+import { LightViewModel, getLightViewModel } from '../ViewModel/LightViewModel';
 import { LightMainSwitch } from './components/LightMainSwitch';
 import { LightSceneMode } from './components/LightSceneMode';
 import { IndependentLight } from './components/IndependentLight';
 
 @ComponentV2
 export struct LightPage {
-  @Local viewModel: LightViewModel = new LightViewModel();
+  @Local viewModel: LightViewModel = getLightViewModel();
 
-  async aboutToAppear(): Promise<void> {
-    await this.viewModel.loadLights();
+  aboutToAppear(): void {
+    this.viewModel.loadLights();
   }
 
   build() {

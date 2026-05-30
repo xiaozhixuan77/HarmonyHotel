@@ -1,4 +1,4 @@
-import { CurtainViewModel } from '../ViewModel/CurtainViewModel';
+import { CurtainViewModel, getCurtainViewModel } from '../ViewModel/CurtainViewModel';
 import { CurtainAllControl } from './components/CurtainAllControl';
 import { CurtainSingle } from './components/CurtainSingle';
 import { WindowScreening } from './components/WindowScreening';
@@ -6,10 +6,10 @@ import { CurtainState } from '@ohos/datastore';
 
 @ComponentV2
 export struct CurtainPage {
-  @Local viewModel: CurtainViewModel = new CurtainViewModel();
+  @Local viewModel: CurtainViewModel = getCurtainViewModel();
 
-  async aboutToAppear(): Promise<void> {
-    await this.viewModel.loadCurtains();
+  aboutToAppear(): void {
+    this.viewModel.loadCurtains();
   }
 
   private getCurtainState(index: number): CurtainState {
