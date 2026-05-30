@@ -51,13 +51,7 @@ export struct ServicePage {
   }
 
   build() {
-    Stack() {
-      Image($r('app.media.service_bg'))
-        .width('100%')
-        .height('100%')
-        .objectFit(ImageFit.Cover)
-
-      Scroll() {
+    Scroll() {
         Column() {
           Text($r('app.string.page_service'))
             .fontSize($r('app.float.text_title'))
@@ -65,7 +59,7 @@ export struct ServicePage {
             .fontWeight(FontWeight.Bold)
             .width('100%')
             .textAlign(TextAlign.Center)
-            .margin({ top: 24 })
+            .margin({ top: 24, bottom: 20 })
 
           Column() {
             Row() {
@@ -128,8 +122,5 @@ export struct ServicePage {
       .height('100%')
       .scrollBar(BarState.Off)
       .edgeEffect(EdgeEffect.Spring)
-    }
-    .width('100%')
-    .height('100%')
   }
 }

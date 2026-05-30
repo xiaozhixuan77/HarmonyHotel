@@ -40,10 +40,10 @@ export struct SceneModePanel {
                 Image(item.icon)
                   .width($r('app.float.icon_size_button'))
                   .height($r('app.float.icon_size_button'))
-                  .fillColor(this.currentMode === item.key ? '#50C878' : Color.Black)
+                  .fillColor(this.currentMode === item.key ? $r('app.color.gold') : Color.Black)
                 Text(item.label)
                   .fontSize($r('app.float.text_caption'))
-                  .fontColor(this.currentMode === item.key ? '#50C878' : Color.Black)
+                  .fontColor(this.currentMode === item.key ? $r('app.color.gold') : Color.Black)
                   .margin({ left: 8 })
               }
               .width('100%')

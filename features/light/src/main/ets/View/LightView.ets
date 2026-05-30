@@ -12,13 +12,7 @@ export struct LightPage {
   }
 
   build() {
-    Stack() {
-      Image($r('app.media.light_bg'))
-        .width('100%')
-        .height('100%')
-        .objectFit(ImageFit.Cover)
-
-      Scroll() {
+    Scroll() {
         Column() {
           Text($r('app.string.page_light'))
             .fontSize($r('app.float.text_title'))
@@ -59,8 +53,5 @@ export struct LightPage {
       .height('100%')
       .scrollBar(BarState.Off)
       .edgeEffect(EdgeEffect.Spring)
-    }
-    .width('100%')
-    .height('100%')
   }
 }

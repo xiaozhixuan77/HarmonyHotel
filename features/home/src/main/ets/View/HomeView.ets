@@ -3,7 +3,6 @@ import { AirconControl } from './components/AirconControl';
 import { SceneModePanel } from './components/SceneModePanel';
 import { ServiceStatus } from './components/ServiceStatus';
 import { promptAction } from '@kit.ArkUI';
-@Entry
 @ComponentV2
 export struct HomePage {
   @Local viewModel: HomeViewModel = new HomeViewModel();
@@ -13,13 +12,7 @@ export struct HomePage {
   }
 
   build() {
-    Stack() {
-      Image($r('app.media.home_background'))
-        .width('100%')
-        .height('100%')
-        .objectFit(ImageFit.Cover)
-
-      Scroll() {
+    Scroll() {
         Column() {
           Row() {
             Column() {
@@ -98,8 +91,5 @@ export struct HomePage {
       .height('100%')
       .scrollBar(BarState.Off)
       .edgeEffect(EdgeEffect.Spring)
-    }
-    .width('100%')
-    .height('100%')
   }
 }

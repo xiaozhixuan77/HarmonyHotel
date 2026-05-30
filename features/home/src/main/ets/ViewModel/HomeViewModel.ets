@@ -67,6 +67,10 @@ export class HomeViewModel {
   }
 
   async setSceneMode(hardwareId: number, modeName: string): Promise<void> {
+    if (this.currentSceneMode === modeName) {
+      this.currentSceneMode = '';
+      return;
+    }
     const res: ApiResponse<string> = await this.setLightModeApi(hardwareId);
     if (res.success) {
       this.currentSceneMode = modeName;

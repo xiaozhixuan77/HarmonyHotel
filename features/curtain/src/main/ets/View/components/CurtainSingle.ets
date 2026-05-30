@@ -1,6 +1,67 @@
 import { CurtainState } from '@ohos/datastore';
 
 @ComponentV2
+struct CurtainControlBtn {
+  @Param action: string = 'open';
+  @Param isSelected: boolean = false;
+  @Event onBtnClick: () => void = () => {};
+
+  private getBtnBg(selected: boolean): Resource {
+    return selected ? $r('app.media.curtain_btn_selected_bg') : $r('app.media.curtain_btn_unselected_bg');
+  }
+
+  private getActionIcon(act: string): Resource {
+    if (act === 'open') {
+      return $r('app.media.curtain_icon_open');
+    } else if (act === 'pause') {
+      return $r('app.media.curtain_icon_pause');
+    } else if (act === 'close') {
+      return $r('app.media.curtain_icon_close');
+    }
+    return $r('app.media.curtain_icon_open');
+  }
+
+  private getActionLabel(act: string): ResourceStr {
+    if (act === 'open') {
+      return $r('app.string.curtain_open');
+    } else if (act === 'pause') {
+      return $r('app.string.curtain_pause');
+    } else if (act === 'close') {
+      return $r('app.string.curtain_close');
+    }
+    return '';
+  }
+
+  build() {
+    Column() {
+      Stack() {
+        Image(this.getBtnBg(this.isSelected))
+          .width(48)
+          .height(48)
+          .objectFit(ImageFit.Fill)
+          .borderRadius(24)
+
+        Image(this.getActionIcon(this.action))
+          .width(20)
+          .height(20)
+          .objectFit(ImageFit.Contain)
+          .fillColor(this.isSelected ? $r('app.color.gold') : $r('app.color.text_primary'))
+      }
+      .width(48)
+      .height(48)
+
+      Text(this.getActionLabel(this.action))
+        .fontSize(12)
+        .fontColor(this.isSelected ? $r('app.color.gold') : $r('app.color.text_secondary'))
+        .margin({ top: 4 })
+    }
+    .width('33%')
+    .alignItems(HorizontalAlign.Center)
+    .onClick(this.onBtnClick)
+  }
+}
+
+@ComponentV2
 export struct CurtainSingle {
   @Param state: CurtainState = 'close';
   @Event onStateChange: (state: CurtainState) => void = (_state: CurtainState) => {};
@@ -21,10 +82,6 @@ export struct CurtainSingle {
       return 30;
     }
     return 0;
-  }
-
-  private getBtnBg(isSelected: boolean): Resource {
-    return isSelected ? $r('app.media.curtain_btn_selected_bg') : $r('app.media.curtain_btn_unselected_bg');
   }
 
   build() {
@@ -77,14 +134,20 @@ export struct CurtainSingle {
         .alignItems(VerticalAlign.Center)
 
         Row() {
-          this.CurtainBtn('open', this.state === 'open', () => {
-            this.onStateChange('open');
+          CurtainControlBtn({
+            action: 'open',
+            isSelected: this.state === 'open',
+            onBtnClick: (): void => { this.onStateChange('open'); }
           })
-          this.CurtainBtn('pause', this.state === 'pause', () => {
-            this.onStateChange('pause');
+          CurtainControlBtn({
+            action: 'pause',
+            isSelected: this.state === 'pause',
+            onBtnClick: (): void => { this.onStateChange('pause'); }
           })
-          this.CurtainBtn('close', this.state === 'close', () => {
-            this.onStateChange('close');
+          CurtainControlBtn({
+            action: 'close',
+            isSelected: this.state === 'close',
+            onBtnClick: (): void => { this.onStateChange('close'); }
           })
         }
         .width('100%')
@@ -99,56 +162,5 @@ export struct CurtainSingle {
     }
     .width('100%')
     .height(260)
-  }
-
-  @Builder
-  CurtainBtn(action: string, isSelected: boolean, onClick: () => void) {
-    Column() {
-      Stack() {
-        Image(this.getBtnBg(isSelected))
-          .width(48)
-          .height(48)
-          .objectFit(ImageFit.Fill)
-          .borderRadius(24)
-
-        Image(this.getActionIcon(action))
-          .width(20)
-          .height(20)
-          .objectFit(ImageFit.Contain)
-          .fillColor(isSelected ? $r('app.color.gold') : $r('app.color.text_primary'))
-      }
-      .width(48)
-      .height(48)
-
-      Text(this.getActionLabel(action))
-        .fontSize(12)
-        .fontColor(isSelected ? $r('app.color.gold') : $r('app.color.text_secondary'))
-        .margin({ top: 4 })
-    }
-    .width('33%')
-    .alignItems(HorizontalAlign.Center)
-    .onClick(onClick)
-  }
-
-  private getActionIcon(action: string): Resource {
-    if (action === 'open') {
-      return $r('app.media.curtain_icon_open');
-    } else if (action === 'pause') {
-      return $r('app.media.curtain_icon_pause');
-    } else if (action === 'close') {
-      return $r('app.media.curtain_icon_close');
-    }
-    return $r('app.media.curtain_icon_open');
-  }
-
-  private getActionLabel(action: string): ResourceStr {
-    if (action === 'open') {
-      return $r('app.string.curtain_open');
-    } else if (action === 'pause') {
-      return $r('app.string.curtain_pause');
-    } else if (action === 'close') {
-      return $r('app.string.curtain_close');
-    }
-    return '';
   }
 }

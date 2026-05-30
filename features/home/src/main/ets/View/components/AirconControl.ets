@@ -61,8 +61,8 @@ export struct AirconControl {
             Image($r('app.media.home_btn_sub'))
               .width($r('app.float.icon_size_button'))
               .height($r('app.float.icon_size_button'))
-              .enabled(!this.isLoading && this.settingTemp > 16)
-              .opacity(this.settingTemp <= 16 ? 0.4 : 1.0)
+              .enabled(!this.isLoading && this.isOn && this.settingTemp > 16)
+              .opacity(!this.isOn || this.settingTemp <= 16 ? 0.4 : 1.0)
               .onClick(() => {
                 this.onTempDown();
               })
@@ -87,8 +87,8 @@ export struct AirconControl {
             Image($r('app.media.home_btn_add'))
               .width($r('app.float.icon_size_button'))
               .height($r('app.float.icon_size_button'))
-              .enabled(!this.isLoading && this.settingTemp < 30)
-              .opacity(this.settingTemp >= 30 ? 0.4 : 1.0)
+              .enabled(!this.isLoading && this.isOn && this.settingTemp < 30)
+              .opacity(!this.isOn || this.settingTemp >= 30 ? 0.4 : 1.0)
               .onClick(() => {
                 this.onTempUp();
               })
