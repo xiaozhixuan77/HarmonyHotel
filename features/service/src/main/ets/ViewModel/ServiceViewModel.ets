@@ -1,5 +1,5 @@
 import { ApiResponse, mockGetRoomState, clearToken } from '@ohos/network';
-import { RoomState, Service } from '@ohos/datastore';
+import { RoomState, Service, RoomServiceState, roomServiceState } from '@ohos/datastore';
 import { deleteToken, clearLoginInfo } from '@ohos/datastore';
 import { common } from '@kit.AbilityKit';
 
@@ -24,10 +24,9 @@ export function getServiceViewModel(): ServiceViewModel {
 @ObservedV2
 export class ServiceViewModel {
   @Trace services: Service[] = [];
-  @Trace dndOn: boolean = false;
-  @Trace cleanRequested: boolean = false;
   @Trace sosTriggered: boolean = false;
   @Trace isLoading: boolean = false;
+  serviceState: RoomServiceState = roomServiceState;
 
   getRoomStateApi: (roomNo: string) => Promise<ApiResponse<RoomState>> = mockGetRoomState;
 
@@ -39,23 +38,23 @@ export class ServiceViewModel {
     const res: ApiResponse<RoomState> = await this.getRoomStateApi('2002');
     if (res.success && res.data) {
       this.services = res.data.hardware.services.map((s: Service) => cloneService(s, false));
-      this.dndOn = res.data.state.wurao === '1';
-      this.cleanRequested = res.data.state.qingli === '1';
+      this.serviceState.dndOn = res.data.state.wurao === '1';
+      this.serviceState.cleanRequested = res.data.state.qingli === '1';
       this.loaded = true;
     }
     this.isLoading = false;
   }
 
   toggleDND(): void {
-    this.dndOn = !this.dndOn;
+    this.serviceState.dndOn = !this.serviceState.dndOn;
   }
 
   requestClean(): void {
-    this.cleanRequested = true;
+    this.serviceState.cleanRequested = true;
   }
 
   cancelClean(): void {
-    this.cleanRequested = false;
+    this.serviceState.cleanRequested = false;
   }
 
   triggerSOS(): void {

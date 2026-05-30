@@ -1,5 +1,5 @@
 import { ApiResponse, mockGetRoomState, mockClickAirBtn, mockSetLightMode } from '@ohos/network';
-import { RoomState } from '@ohos/datastore';
+import { RoomState, RoomServiceState, roomServiceState } from '@ohos/datastore';
 
 const AC_ID = 103136;
 const DEBOUNCE_DELAY = 500;
@@ -24,8 +24,7 @@ export class HomeViewModel {
   @Trace acPower: boolean = true;
   @Trace isLoading: boolean = false;
   @Trace currentSceneMode: string = '';
-  @Trace dndActive: boolean = false;
-  @Trace cleanRequested: boolean = false;
+  serviceState: RoomServiceState = roomServiceState;
 
   getRoomStateApi: (roomNo: string) => Promise<ApiResponse<RoomState>> = mockGetRoomState;
   clickAirBtnApi: (cmd: string, value: number, airId: number) => Promise<ApiResponse<string>> = mockClickAirBtn;
@@ -49,6 +48,8 @@ export class HomeViewModel {
         this.acSpeed = ac.speed || 1;
         this.acPower = (ac.open || 0) === 1;
       }
+      this.serviceState.dndOn = data.state.wurao === '1';
+      this.serviceState.cleanRequested = data.state.qingli === '1';
       this.loaded = true;
     }
     this.isLoading = false;
@@ -97,11 +98,11 @@ export class HomeViewModel {
   }
 
   toggleDND(): void {
-    this.dndActive = !this.dndActive;
+    this.serviceState.dndOn = !this.serviceState.dndOn;
   }
 
   toggleClean(): void {
-    this.cleanRequested = !this.cleanRequested;
+    this.serviceState.cleanRequested = !this.serviceState.cleanRequested;
   }
 
   private debounceSetTemp(temp: number): void {

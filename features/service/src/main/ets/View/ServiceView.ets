@@ -64,7 +64,7 @@ export struct ServicePage {
           Column() {
             Row() {
               DNDToggle({
-                isOn: this.viewModel.dndOn,
+                isOn: this.viewModel.serviceState.dndOn,
                 onToggle: (): void => {
                   this.viewModel.toggleDND();
                 }
@@ -72,9 +72,9 @@ export struct ServicePage {
                 .layoutWeight(1)
 
               CleanRoom({
-                isOn: this.viewModel.cleanRequested,
+                isOn: this.viewModel.serviceState.cleanRequested,
                 onToggle: (): void => {
-                  if (this.viewModel.cleanRequested) {
+                  if (this.viewModel.serviceState.cleanRequested) {
                     this.viewModel.cancelClean();
                     promptAction.showToast({
                       message: '已取消客房服务',

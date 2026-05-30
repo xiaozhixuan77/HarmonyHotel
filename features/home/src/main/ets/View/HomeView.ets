@@ -70,13 +70,13 @@ export struct HomePage {
             .margin({ bottom: $r('app.float.spacing_md') })
 
           ServiceStatus({
-            dndActive: this.viewModel.dndActive,
-            cleanRequested: this.viewModel.cleanRequested,
+            dndActive: this.viewModel.serviceState.dndOn,
+            cleanRequested: this.viewModel.serviceState.cleanRequested,
             onDNDToggle: (): void => { this.viewModel.toggleDND(); },
             onCleanToggle: (): void => {
               this.viewModel.toggleClean();
               promptAction.showToast({
-                message: this.viewModel.cleanRequested ? '已通知客房服务' : '已取消客房服务',
+                message: this.viewModel.serviceState.cleanRequested ? '已通知客房服务' : '已取消客房服务',
                 duration: 2000
               });
             },
