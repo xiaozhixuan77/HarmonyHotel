@@ -1,9 +1,0 @@
-{
-  "name": "@ohos/utils",
-  "version": "1.0.0",
-  "description": "General utility functions",
-  "main": "Index.ets",
-  "author": "",
-  "license": "",
-  "dependencies": {}
-}
