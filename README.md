@@ -96,8 +96,8 @@ entry/src/main/ets/
 
 ## 设计资料
 
-- **项目设计书**：`E:\HarmonyHotel\资料\项目设计书\项目设计书.md`
-- **接口文档**：`E:\HarmonyHotel\资料\智慧客房接口文档.md`
+- **项目设计书**：`资料/项目设计书/项目设计书.md`
+- **接口文档**：`资料/智慧客房接口文档.md`
 - **UI 资源**：`entry/src/main/resources/base/media/`（85 张图片）
 
 ## Git 提交历史
@@ -109,7 +109,7 @@ c254e0f chore: 清理残留 .gitkeep 空文件
 a1464e2 feat(product): 实现多设备适配（平板/折叠屏布局）
 43a61a4 style: 统一页面标题居中与字号调整
 8c0e9e6 feat(service): 调整服务模块 UI 布局
-...（共 27 个 commit）
+...（完整历史见 git log）
 4e23b2f chore(config): 搭建三层目录结构，基础配置更新
 ```
 
@@ -117,7 +117,7 @@ a1464e2 feat(product): 实现多设备适配（平板/折叠屏布局）
 
 ## 交付报告
 
-各步骤交付报告位于 `E:\HarmonyHotel\reports\`：
+各步骤交付报告位于 `reports/`：
 
 | 步骤 | 模块 | 报告路径 |
 |------|------|----------|
